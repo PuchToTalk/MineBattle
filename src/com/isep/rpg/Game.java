@@ -1,11 +1,22 @@
 package com.isep.rpg;
 
+import java.util.Scanner;
+
+
+
 public class Game {
+    private List<Hero> heroes;
+    private int playerTurn;
+    /*    Scanner clavier = new Scanner(System.in);
+        System.out.print("Donnez l'heure de début de la location (un entier) : ");
+        int debut = clavier.nextInt();*/
 
-
-
-    public Game(int lifePoints, String name){
-        this.lifePoints = lifePoints;
-        this.name = name;
+    public Game(List<Hero> heroes, int playerTurn){
+        this.playerTurn = playerTurn;
+        this.heroes = heroes;
     }
+
+    public abstract void
+
+
 }
