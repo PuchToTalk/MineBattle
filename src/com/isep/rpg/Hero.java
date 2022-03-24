@@ -23,6 +23,11 @@ public abstract class Hero extends Game {
 
     }
 
+    public abstract void attack();
+
+    public abstract void defend();
+
+
 
     public abstract void heroAttack(Hero Hero, Enemy Enemy) {
         private int lifeEnemies;
