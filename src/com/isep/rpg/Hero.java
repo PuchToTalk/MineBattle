@@ -3,20 +3,20 @@ package com.isep.rpg;
 import java.util.*;
 
 
-public abstract class Hero extends Game{
+public abstract class Hero extends Game {
+    public String name;
     public int lifePoints;
     public int armor;
     public int heroDamage;
-    public List<Potion> potions;
-    public List<Food> lembas;
+    public ArrayList<Potion> potions;
+    public ArrayList<Food> lembas;
 
 
     public boolean HAlive;
     public List<Enemy> EAlive;
 
 
-
-    public Hero(int lifePoints, int armor, int heroDamage){
+    public Hero(int lifePoints, int armor, int heroDamage) {
         this.lifePoints = lifePoints;
         this.armor = armor;
         this.heroDamage = heroDamage;
@@ -30,23 +30,23 @@ public abstract class Hero extends Game{
         lifeEnemies = Enemy.lifePoints;
         getDamage = heroDamage;
         Enemy.lifePoints = (lifeEnemies - getDamage);
-        if Enemy.lifePoints < 0 {
+        if Enemy.lifePoints< 0 {
             System.out.println(" L'ennemie a été battu ! ");
         }
         else{
             System.out.println(" L'ennemie est toujours vivant ");
-            }
+        }
 
     }
 
-    public abstract void heroDefend(Hero Hero, Enemy Enemy){
+    public abstract void heroDefend(Hero Hero, Enemy Enemy) {
 
     }
 
 
+    public void List
 
-
-    public void List<Hero> listOfHeroes(String HeroClass) {
+    <Hero> listOfHeroes(String HeroClass) {
         switch ("HeroClass") {
             case "Warrior":
                 heroes.add(new Warrior());
@@ -77,8 +77,11 @@ public abstract class Hero extends Game{
 
         }
     }
+
     // on ajoute à chaque étage un boss : réf à la Sword Art Online
-    public void List<Enemy> listOfEnemies() {
+    public void List
+
+    <Enemy> listOfEnemies() {
         int niveauBoss = Random.nextInt(100);
         switch (niveauBoss) {
             case 100:
@@ -106,8 +109,6 @@ public abstract class Hero extends Game{
         return enemies;
 
 
-
-
     Scanner scanner1 = new Scanner(System.in);
         System.out.println(" Jouer au jeu ? ");
     String startGame = scanner1.nextFloat();
@@ -119,9 +120,7 @@ public abstract class Hero extends Game{
 
     Scanner scanner3 = new Scanner(System.in);
         System.out.println(" Que faire ? Attaquer/defendre/potion/ food ? ");
-    String startAction= scanner3.nextFloat();
-
-
+    String startAction = scanner3.nextFloat();
 
 
     public useConsumable(String startAction) {
@@ -147,6 +146,13 @@ public abstract class Hero extends Game{
 
 
     }
+
+    public void givePotion() {
+        Potion potion = new Potion();
+        this.potions.add(potion);
+    }
+
+
     public useFood(String startAction) {
         if (startAction == "food") {
             lembas.add(-1);
@@ -158,21 +164,10 @@ public abstract class Hero extends Game{
 
     }
 
-
-
-// démarrer le jeu
-
-    public static void playGame(){
-
+    public void giveFood() {
+        Food food = new Food();
+        this.lembas.add(food);
     }
-    public static void generateCombat(){
-    }
-
-
-
-}
-
-
 
 
 }
