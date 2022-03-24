@@ -2,19 +2,15 @@ package com.isep.rpg;
 
 import java.util.Scanner;
 
+
 public class Main {
+    public Main() {
+    }
+
     public static void main(String[] args) {
+        Game game = new Game();
+        game.playGame();
 
-
-
-
-// affichage détails du combat : show enemy
-        Boss b = new Boss();
-        BasicEnemy bE = new BasicEnemy();
-        b.showEnemy();
-        bE.showEnemy();
-
-
-
+        // lancer une session du jeu à travers la classe Game
     }
 }
