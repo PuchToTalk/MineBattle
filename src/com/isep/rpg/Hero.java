@@ -127,7 +127,7 @@ public abstract class Hero extends Game {
         System.out.println(" Que faire ? Attaquer/defendre/potion/ food ? ");
     String startAction = scanner3.nextFloat();
 
-
+/*
     public useConsumable(String startAction) {
         if (startAction == "potion") {
             potions.add(-1);
@@ -140,7 +140,7 @@ public abstract class Hero extends Game {
         return lembas;
 
     }
-
+*/
     public usePotion(String startAction) {
         if (startAction == "potion") {
             potions.add(-1);
