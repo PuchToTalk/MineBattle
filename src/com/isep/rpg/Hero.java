@@ -29,13 +29,13 @@ public abstract class Hero extends Game {
 
 
 
-    public abstract void heroAttack(Hero Hero, Enemy Enemy) {
-        private int lifeEnemies;
-        private int getDamage;
+    public void heroAttack(Hero Hero, Enemy Enemy) {
+        public int lifeEnemies;
+        public int getDamage;
         lifeEnemies = Enemy.lifePoints;
         getDamage = heroDamage;
         Enemy.lifePoints = (lifeEnemies - getDamage);
-        if Enemy.lifePoints< 0 {
+        if( Enemy.lifePoints<0 ) {
             System.out.println(" L'ennemie a été battu ! ");
         }
         else{
@@ -44,14 +44,12 @@ public abstract class Hero extends Game {
 
     }
 
-    public abstract void heroDefend(Hero Hero, Enemy Enemy) {
+    public void heroDefend(Hero Hero, Enemy Enemy) {
 
     }
 
 
-    public void List
-
-    <Hero> listOfHeroes(String HeroClass) {
+    public static void ArrayList <Hero> listOfHeroes(String HeroClass) {
         switch ("HeroClass") {
             case "Warrior":
                 heroes.add(new Warrior());
@@ -112,7 +110,7 @@ public abstract class Hero extends Game {
         }
     }
         return enemies;
-
+/*
 
     Scanner scanner1 = new Scanner(System.in);
         System.out.println(" Jouer au jeu ? ");
@@ -140,7 +138,7 @@ public abstract class Hero extends Game {
         return lembas;
 
     }
-*/
+
     public usePotion(String startAction) {
         if (startAction == "potion") {
             potions.add(-1);
@@ -151,13 +149,13 @@ public abstract class Hero extends Game {
 
 
     }
-
+*/
     public void givePotion() {
         Potion potion = new Potion();
         this.potions.add(potion);
     }
 
-
+/*
     public useFood(String startAction) {
         if (startAction == "food") {
             lembas.add(-1);
@@ -168,7 +166,7 @@ public abstract class Hero extends Game {
 
 
     }
-
+*/
     public void giveFood() {
         Food food = new Food();
         this.lembas.add(food);
