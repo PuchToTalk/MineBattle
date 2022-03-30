@@ -1,8 +1,8 @@
 package com.isep.rpg;
 
-public class BasicEnemy extends Enemy{
+public class BasicEnemy extends Enemy {
     public BasicEnemy() {
-        super(2000,"BasicEnemy");
+        this.lifePoints = 10;
+        this.name = "Gobelin";
     }
-
 }

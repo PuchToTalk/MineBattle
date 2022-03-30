@@ -1,10 +1,9 @@
 package com.isep.rpg;
 
 public abstract class SpellCaster extends Hero {
-    public int manaPoints;
+    protected int manaPoints;
+    protected int manaConsomme;
 
     public SpellCaster() {
-        super(6, 4, 5);
-        this.manaPoints = 5;
     }
 }

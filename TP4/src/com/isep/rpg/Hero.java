@@ -1,46 +1,33 @@
 package com.isep.rpg;
 
-import java.util.*;
 
+import java.util.ArrayList;
 
-public abstract class Hero extends Game{
-    public int lifePoints;
-    public int armor;
-    public int heroDamage;
+public abstract class Hero {
+    protected String name;
+    protected int lifePoints;
+    protected int armor;
+    protected int weaponDamage;
+    protected ArrayList<Potion> potions;
+    protected ArrayList<Food> lembas;
 
-    public boolean HAlive;
-    public List<Enemy> EAlive;
-
-
-
-    public Hero(int lifePoints, int armor, int heroDamage){
-        this.lifePoints = lifePoints;
-        this.armor = armor;
-        this.heroDamage = heroDamage;
-
+    public Hero() {
     }
 
+    public abstract void attack();
 
-    public abstract void heroAttack(Hero Hero, Enemy Enemy) {
-        private int lifeEnemies;
-        private int getDamage;
-        lifeEnemies = Enemy.lifePoints;
-        getDamage = heroDamage;
-        Enemy.lifePoints = (lifeEnemies - getDamage);
-        if Enemy.lifePoints < 0 {
-            System.out.println(" L'ennemie a été battu ! ");
-        }
-        else{
-            System.out.println(" L'ennemie est toujours vivant ");
-            }
+    public abstract void defend();
 
+    public abstract void useConsumable(Consumable var1);
+
+    public void givePotion() {
+        Potion potion = new Potion();
+        this.potions.add(potion);
     }
 
-    public abstract void heroDefend(Hero Hero, Enemy Enemy){
-
+    public void giveFood() {
+        Food food = new Food();
+        this.lembas.add(food);
     }
-
-
-
-
 }
+
