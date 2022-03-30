@@ -35,11 +35,11 @@ public abstract class Hero extends Game {
         lifeEnemies = Enemy.lifePoints;
         getDamage = heroDamage;
         Enemy.lifePoints = (lifeEnemies - getDamage);
-        if( Enemy.lifePoints<0 ) {
-            System.out.println(" L'ennemie a été battu ! ");
+        if( Enemy.lifePoints <= 0 ) {
+            System.out.println(" L'ennemi a été battu ! ");
         }
         else{
-            System.out.println(" L'ennemie est toujours vivant ");
+            System.out.println(" L'ennemi est toujours vivant ");
         }
 
     }
