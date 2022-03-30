@@ -11,14 +11,14 @@ public class Warrior extends Hero {
 
     public void attack() {
         Random random = new Random();
-        this.heroDamage = random.nextInt(100) + 1;
+        this.weaponDamage = random.nextInt(10) + 1;
     }
 
     public void defend() {
         Random random = new Random();
-        int degat = random.nextInt(100);
-        int defence = random.nextInt(100);
-        if (defence < 50 && degat > this.armor) {
+        int degat = random.nextInt(10);
+        int defence = random.nextInt(10);
+        if (defence < 5 && degat > this.armor) {
             this.lifePoints += this.armor - degat;
         }
 
@@ -27,4 +27,3 @@ public class Warrior extends Hero {
     public void useConsumable(Consumable consumable) {
     }
 }
-
