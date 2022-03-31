@@ -6,7 +6,11 @@
 
 > d2 : recommence à zéro
 
-> v1 : fonctionnel début
+> d3 : fonctionnel début
 
-> v2 : intéractions personnage (soon)
+> v1 : intéractions personnage (sélection héros)
+
+> v2 : simulations combat (battle generator)
+
+> b1 : jeu fonctionnel
 
