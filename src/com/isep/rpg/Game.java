@@ -17,7 +17,7 @@ public class Game {
 
     public void playGame() {
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Choisissez le nombre de héros qui participeront à l'aventure !");
+        System.out.println("Choix du nombre de héros :");
         int nombreDeHeros = scanner.nextInt();
         this.heroes = new ArrayList();
 
@@ -26,22 +26,22 @@ public class Game {
             Scanner scan = new Scanner(System.in);
             String nomDuHero;
             if (k == 1) {
-                System.out.println("Quelle est le nom du 1er héro ?");
+                System.out.println("Choix du nom de notre premier héros ?");
                 nomDuHero = scan.nextLine();
 
                 do {
                     do {
-                        System.out.println("Quelle est sa classe ? \n1 : Guerrier\n2 : Chasseur\n3 : Mage\n4 : Soigneur");
+                        System.out.println("Choix du classe de notre / nos héro(s) ? \n1 : Warrior \n2 : Hunter \n3 : Mage\n4 : Healer");
                         k = scan.nextInt();
                     } while(k < 1);
                 } while(k > 4);
             } else {
-                System.out.println("Quelle est le nom du " + k + "e héro ?");
+                System.out.println("Choix du nom de notre " + k + "ème héros :");
                 nomDuHero = scan.nextLine();
 
                 do {
                     do {
-                        System.out.println("Quelle est sa classe ? \n1 : Guerrier\n2 : Chasseur\n3 : Mage\n4 : Soigneur");
+                        System.out.println("Choix de la classe de ce héro : \n1 : Warrior \n2 : Hunter \n3 : Mage\n4 : Healer");
                         k = scan.nextInt();
                     } while(k < 1);
                 } while(k > 4);
@@ -88,8 +88,8 @@ public class Game {
 
             System.out.println("Nom du héro : " + hero.name);
             System.out.println(hero.getClass());
-            System.out.println("Points de vie : " + hero.lifePoints);
-            System.out.println("Nombre de potions : " + hero.potions.size());
+            System.out.println("Nombre de HP : " + hero.lifePoints);
+            System.out.println("Quantité de potions : " + hero.potions.size());
             System.out.println("Quantité de nourritures : " + hero.lembas.size());
         }
 
@@ -102,7 +102,7 @@ public class Game {
         int combatAleatoire = random.nextInt(5);
         BasicEnemy enemy;
         if (combatAleatoire == 0) {
-            System.out.println("Oh ! Vous êtes tombé sur un boss avec deux sbires !\nPréparez-vous à combattre");
+            System.out.println("Un boss apparaît et il est accompagné de ses deux serviteurs !\nDébut du combat");
             Enemy boss = new Boss();
             enemy = new BasicEnemy();
             Enemy enemy2 = new BasicEnemy();
@@ -110,7 +110,7 @@ public class Game {
             this.enemies.add(enemy);
             this.enemies.add(enemy2);
         } else {
-            System.out.println(nombreDeHerosVivant + " monstres vous attaquent !\nPréparez-vous à combattre");
+            System.out.println(nombreDeHerosVivant + " monstres vous font face !\nDébut du combat");
 
             for(int i = 0; i < nombreDeHerosVivant; ++i) {
                 enemy = new BasicEnemy();
