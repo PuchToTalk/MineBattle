@@ -4,7 +4,7 @@ package com.isep.rpg;
 import java.util.Random;
 
 public class Warrior extends Hero {
-    public Warrior() {
+        public Warrior() {
         this.lifePoints = 25;
         this.armor = 5;
     }
