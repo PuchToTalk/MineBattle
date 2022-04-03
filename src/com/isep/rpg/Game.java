@@ -22,6 +22,7 @@ public class Game {
         this.heroes = new ArrayList();
 
         int k;
+        int z;
         for(k = 1; k <= nombreDeHeros; ++k) {
             Scanner scan = new Scanner(System.in);
             String nomDuHero;
@@ -32,9 +33,9 @@ public class Game {
                 do {
                     do {
                         System.out.println("Choix du classe de notre / nos héro(s) ? \n1 : Warrior \n2 : Hunter \n3 : Mage\n4 : Healer");
-                        k = scan.nextInt();
-                    } while(k < 1);
-                } while(k > 4);
+                        z = scan.nextInt();
+                    } while(z < 1);
+                } while(z > 4);
             } else {
                 System.out.println("Choix du nom de notre " + k + "ème héros :");
                 nomDuHero = scan.nextLine();
@@ -42,12 +43,12 @@ public class Game {
                 do {
                     do {
                         System.out.println("Choix de la classe de ce héro : \n1 : Warrior \n2 : Hunter \n3 : Mage\n4 : Healer");
-                        k = scan.nextInt();
-                    } while(k < 1);
-                } while(k > 4);
+                        z = scan.nextInt();
+                    } while(z < 1);
+                } while(z > 4);
             }
 
-            switch(k) {
+            switch(z) {
                 case 1:
                     Warrior warrior = new Warrior();
                     warrior.name = nomDuHero;
@@ -69,6 +70,9 @@ public class Game {
                     this.heroes.add(healer);
             }
         }
+
+
+
 
         Iterator var11 = this.heroes.iterator();
 
@@ -99,7 +103,7 @@ public class Game {
     public void generateCombat(int nombreDeHerosVivant) {
         this.enemies = new ArrayList();
         Random random = new Random();
-        int combatAleatoire = random.nextInt(5);
+        int combatAleatoire = random.nextInt(3);
         BasicEnemy enemy;
         if (combatAleatoire == 0) {
             System.out.println("Un boss apparaît et il est accompagné de ses deux serviteurs !\nDébut du combat");
@@ -117,8 +121,11 @@ public class Game {
                 this.enemies.add(enemy);
             }
         }
+        // on get l'iterator à partir de la liste enemies
 
         Iterator var8 = this.enemies.iterator();
+
+        // tant qu'il existe un élément contenu dans la liste, on le fait apparaître
 
         while(var8.hasNext()) {
             Enemy enemy1 = (Enemy)var8.next();
