@@ -24,7 +24,7 @@ public class Game {
 
         int k;
         int z;
-        for(k = 1; k <= nombreDeHeros; ++k) {
+        for (k = 1; k <= nombreDeHeros; ++k) {
             Scanner scan = new Scanner(System.in);
             String nomDuHero;
             if (k == 1) {
@@ -37,8 +37,8 @@ public class Game {
                         System.out.println("\n------------------------------------------------------------------\n");
                         System.out.println("Choix du classe de notre / nos héro(s) ? \n1 : Warrior \n2 : Hunter \n3 : Mage\n4 : Healer");
                         z = scan.nextInt();
-                    } while(z < 1);
-                } while(z > 4);
+                    } while (z < 1);
+                } while (z > 4);
             } else {
                 System.out.println("\n------------------------------------------------------------------\n");
                 System.out.println("Choix du nom de notre " + k + "ème héros :");
@@ -49,8 +49,8 @@ public class Game {
                         System.out.println("\n------------------------------------------------------------------\n");
                         System.out.println("Choix de la classe de ce héro : \n1 : Warrior \n2 : Hunter \n3 : Mage\n4 : Healer");
                         z = scan.nextInt();
-                    } while(z < 1);
-                } while(z > 4);
+                    } while (z < 1);
+                } while (z > 4);
             }
 
             switch (z) {
@@ -100,8 +100,8 @@ public class Game {
         }
 
         this.generateCombat(this.heroes.size());
-        this.choixHero();
-        this.choixRecompense();
+        //this.choixHero();
+        //this.choixRecompense();
     }
 
     public void generateCombat(int nombreDeHerosVivant) {
@@ -121,7 +121,7 @@ public class Game {
         } else {
             System.out.println(nombreDeHerosVivant + " monstre(s) vous fait/font face !\nDébut du combat");
 
-            for(int i = 0; i < nombreDeHerosVivant; ++i) {
+            for (int i = 0; i < nombreDeHerosVivant; ++i) {
                 enemy = new BasicEnemy();
                 this.enemies.add(enemy);
             }
@@ -141,15 +141,78 @@ public class Game {
         int choixDecision = scanner.nextInt();
         System.out.println(choixDecision);
 
-    */
+        */
+        for (Enemy mob : this.enemies) {
+            for (Hero hero : this.heroes) {
+                Scanner scanner = new Scanner(System.in);
+                System.out.println("\n------------------------------------------------------------------\n");
+                System.out.println("Que comptez-vous faire? : \n1 : Attaquer \n2 : Se défendre \n3 : Utiliser un consommable \n4 : Fuir");
+                int choixDecision = scanner.nextInt();
 
-    }
+                switch (choixDecision) {
+                    case 1 -> {
+                        Random alea = new Random();
+                        hero.weaponDamage = alea.nextInt(10) + 1;
+                        System.out.println("Vous avez infligé " + hero.weaponDamage + " point(s) de dégât");
+                        mob.lifePoints -= hero.weaponDamage;
+                        hero.lifePoints -= mob.weaponDamage;
 
+                        if (hero.lifePoints > 0) {
+                            System.out.println("Il vous reste " + hero.lifePoints + " point(s) de vie");
+                        } else {
+                            System.out.println("Il ne vous reste plus de vie...\nVous avez perdu le combat");
+                        }
+                    }
+                    case 2 -> {
+                        System.out.println("");
+                    }
+                    case 3 -> {
+                        System.out.println("");
+                    }
+                    case 4 -> {
+                        System.out.println("");
+                    }
+                }
+            }
 
+        }
+
+/*
     public void choixHero() {
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Que comptez-vous faire? : \n1 : Attaquer \n2 : Se défendre \n3 : Utiliser un consommable \n4 : Fuir");
-        int choixDecision = scanner.nextInt();
+        for (Enemy enemy : this.enemies){
+            for (Hero hero : this.heroes) {
+                Scanner scanner = new Scanner(System.in);
+                System.out.println("\n------------------------------------------------------------------\n");
+                System.out.println("Que comptez-vous faire? : \n1 : Attaquer \n2 : Se défendre \n3 : Utiliser un consommable \n4 : Fuir");
+                int choixDecision = scanner.nextInt();
+
+                switch (choixDecision) {
+                    case 1 -> {
+                        Random random = new Random();
+                        hero.weaponDamage = random.nextInt(10) + 1;
+                        System.out.println("Vous avez infligé " + hero.weaponDamage + " point(s) de dégât");
+                        enemy.lifePoints -= hero.weaponDamage;
+                        hero.lifePoints -= enemy.weaponDamage;
+
+                        if (hero.lifePoints > 0) {
+                            System.out.println("Il vous reste " + hero.lifePoints + " point(s) de vie");
+                        } else {
+                            System.out.println("Il ne vous reste plus de vie...\nVous avez perdu le combat");
+                        }
+                    }
+                    case 2 -> {
+                        System.out.println("");
+                    }
+                    case 3 -> {
+                        System.out.println("");
+                    }
+                    case 4 -> {
+                        System.out.println("");
+                    }
+                }
+            }
+
+        }
     }
 
 
@@ -158,9 +221,42 @@ public class Game {
 
     public void choixRecompense(){
         Scanner scanner = new Scanner(System.in);
+        System.out.println("\n------------------------------------------------------------------\n");
         System.out.println("Quelle récompense choisir ? : \n1 : Armure ++ \n2 : Arme ++ \n3 : Potion HP++ \n4 : Nourriture HP++ \n5 : Potion Qtité ++ \n6 : Nourriture Qtité ++ \n7 : Flèche Qtité ++ \n8 : Coût mana -- \n9 : Sort ++");
         int choixRecomp = scanner.nextInt();
-    }
+        switch (choixRecomp) {
+            case 1 -> {
+                System.out.println("");
 
+            }
+            case 2 -> {
+                System.out.println("");
+            }
+            case 3 -> {
+                System.out.println("");
+            }
+            case 4 -> {
+                System.out.println("");
+            }
+            case 5 -> {
+                System.out.println("");
+            }
+            case 6 -> {
+                System.out.println("");
+            }
+            case 7 -> {
+                System.out.println("");
+            }
+            case 8 -> {
+                System.out.println("");
+            }
+            case 9 -> {
+                System.out.println("");
+             }
+            }
+
+        }
+*/
+    }
 }
 
