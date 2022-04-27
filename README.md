@@ -1,4 +1,5 @@
 # Sauvegardes & commits sur la branche DEVELOP
+IMPORTANT : Voir branche "develop" pour les détails sur les commits et avancée du projet ^^
 
 
 # Versions récentes sur branche master
@@ -14,8 +15,7 @@
 
 > b1 : jeu "fonction attaque" fonctionnel
 
-> b2 (27/04/22) : jeu "fonction défendre" fonctionnel
-> + ajout des récompenses en cas de victoire 
+> b2 (27/04/22) : jeu "fonction défendre" fonctionnel (ajout des récompenses en cas de victoire)
 
 > w1 : (soon) Faire l'interface
 
