@@ -12,5 +12,7 @@
 
 > v2 : simulations combat (battle generator)
 
-> b1 : jeu fonctionnel
+> b1 : jeu "fonction attaque" fonctionnel
+
+> b2 : (soon) Faire l'interface
 
