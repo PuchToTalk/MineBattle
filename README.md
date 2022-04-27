@@ -14,5 +14,8 @@
 
 > b1 : jeu "fonction attaque" fonctionnel
 
-> b2 : (soon) Faire l'interface
+> b2 (27/04/22) : jeu "fonction défendre" fonctionnel
+> + ajout des récompenses en cas de victoire 
+
+> w1 : (soon) Faire l'interface
 
