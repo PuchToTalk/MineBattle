@@ -7,11 +7,12 @@ public class Warrior extends Hero {
         public Warrior() {
         this.lifePoints = 25;
         this.armor = 5;
+        this.weaponDamage = 5;
     }
 
     public void attack() {
         Random random = new Random();
-        this.weaponDamage = random.nextInt(10) + 1;
+        this.weaponDamage = random.nextInt(10) + weaponDamage;
     }
 
     public void defend() {
