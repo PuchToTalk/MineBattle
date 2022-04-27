@@ -15,9 +15,22 @@ public class Game {
     public Game() {
     }
 
+    public static void clearConsole(){
+        for(int i=0; i<50;i++)
+            System.out.println();
+    }
+
+
+    public static void printSeperator(int n){
+        for(int i=0; i<n; i++)
+            System.out.print("-");
+        System.out.println();
+
+    }
+
     public void playGame() {
         Scanner scanner = new Scanner(System.in);
-        System.out.println("\n------------------------------------------------------------------\n");
+        printSeperator(66);
         System.out.println("Choix du nombre de héros :");
         int nombreDeHeros = scanner.nextInt();
         this.heroes = new ArrayList();
@@ -28,13 +41,13 @@ public class Game {
             Scanner scan = new Scanner(System.in);
             String nomDuHero;
             if (k == 1) {
-                System.out.println("\n------------------------------------------------------------------\n");
+                printSeperator(66);
                 System.out.println("Choix du nom de notre premier héros ?");
                 nomDuHero = scan.nextLine();
 
                 do {
                     do {
-                        System.out.println("\n------------------------------------------------------------------\n");
+                        printSeperator(66);
                         System.out.println("Choix du classe de notre / nos héro(s) ? \n1 : Warrior \n2 : Hunter \n3 : Mage\n4 : Healer");
                         z = scan.nextInt();
                     } while (z < 1);
@@ -98,6 +111,7 @@ public class Game {
             System.out.println("Quantité de nourritures : " + hero.lembas.size());
             System.out.println("\n------------------------------------------------------------------\n");
             turnTime(2);
+            Game.clearConsole();
         }
 
         this.generateCombat(this.heroes.size());
@@ -108,8 +122,10 @@ public class Game {
     public void generateCombat(int nombreDeHerosVivant) {
         this.enemies = new ArrayList();
         Random random = new Random();
-        int combatAleatoire = random.nextInt(3);
+        int combatAleatoire = random.nextInt(10);
         BasicEnemy enemy;
+
+        // Condition pour apparition d'un BOSS (1/10 de proba)
         if (combatAleatoire == 0) {
             System.out.println("\n------------------------------------------------------------------\n");
             System.out.println("Un boss apparaît et il est accompagné de ses deux serviteurs !\nDébut du combat");
@@ -119,7 +135,9 @@ public class Game {
             this.enemies.add(boss);
             this.enemies.add(enemy);
             this.enemies.add(enemy2);
-        } else {
+        }
+        // Condition pour apparition de ENEMY basique (9/10 de proba)
+        else {
             System.out.println(nombreDeHerosVivant + " monstre(s) vous fait/font face !\nDébut du combat");
 
             for (int i = 0; i < nombreDeHerosVivant; ++i) {
@@ -138,40 +156,59 @@ public class Game {
         }
         int nombreDeEnemy = this.enemies.size();
 
-        while (nombreDeHerosVivant != 0 && nombreDeEnemy != 0) {
+        while (nombreDeHerosVivant > 0 && nombreDeEnemy > 0) {
+            for (int i=0; i<nombreDeHerosVivant; i++) {
+                    Hero hero = this.heroes.get(i);
+        //    for (Hero hero : this.heroes) {
+        //        for (Enemy mob : this.enemies) {
 
-            for (Hero hero : this.heroes) {
-                for (Enemy mob : this.enemies) {
                     Scanner scanner = new Scanner(System.in);
-                    System.out.println("\n------------------------------------------------------------------\n");
+
+                printSeperator(66);
+                System.out.println("Nom du héro : " + hero.name);
+                System.out.println("Nombre de HP : " + hero.lifePoints);
+                System.out.println("Quantité de potions : " + hero.potions.size());
+                System.out.println("Quantité de nourritures : " + hero.lembas.size());
+                    printSeperator(66);
                     System.out.println("Que comptez-vous faire? : \n1 : Attaquer \n2 : Se défendre \n3 : Utiliser un consommable \n4 : Fuir");
                     int choixDecision = scanner.nextInt();
 
                     switch (choixDecision) {
                         case 1 -> {
-                            Random alea = new Random();
-                            hero.weaponDamage = alea.nextInt(10) + 1;
-                            System.out.println(hero.name + " a infligé " + hero.weaponDamage + " point(s) de dégât");
-                            mob.lifePoints -= hero.weaponDamage;
-                            hero.lifePoints -= mob.weaponDamage;
+                            System.out.println("Quel ennemi attaquez-vous ? : ");
+                            int positionEnemy = scanner.nextInt();
 
-                            if (hero.lifePoints > 0) {
-                                System.out.println(hero.name + " a encore " + hero.lifePoints + " point(s) de vie");
-                            } else {
-                                System.out.println(hero.name + " n'a plus de vie...\n");
-                                nombreDeHerosVivant -= 1;
-                                if (nombreDeHerosVivant == 0) {
-                                    System.out.println("Il ne vous reste plus de vie...\nVous avez perdu le combat");
+                            if (positionEnemy -1 <= this.enemies.size()) {
+
+                                Enemy mob = this.enemies.get(positionEnemy-1);
+                                Random alea = new Random();
+                                hero.weaponDamage = alea.nextInt(10) + 1;
+                                System.out.println(hero.name + " a infligé " + hero.weaponDamage + " point(s) de dégât");
+                                mob.lifePoints -= hero.weaponDamage;
+                                hero.lifePoints -= mob.weaponDamage;
+                                if (hero.lifePoints > 0) {
+                                    System.out.println(hero.name + " a encore " + hero.lifePoints + " point(s) de vie");
+                                } else {
+                                    System.out.println(hero.name + " n'a plus de vie...\n");
+                                    nombreDeHerosVivant -= 1;
+                                    if (nombreDeHerosVivant == 0) {
+                                        System.out.println("Il ne vous reste plus de vie...\nVous avez perdu le combat");
+                                        break;
+                                    }
                                 }
-                            }
 
-                            if (mob.lifePoints > 0) {
-                                System.out.println(mob.name + " vous fait face et a encore " + mob.lifePoints + " de PV");
-                            } else {
-                                System.out.println(mob.name + " a été vaincu");
-                                nombreDeEnemy -= 1;
-                                if (nombreDeEnemy == 0) {
+                                if (mob.lifePoints > 0) {
+                                    System.out.println(mob.name + " vous fait face et a encore " + mob.lifePoints + " de PV");
+                                } else {
+                                    System.out.println(mob.name + " a été vaincu");
+                                    nombreDeEnemy -= 1;
+                                    this.enemies.remove(positionEnemy-1);
+
+                                }
+
+                                if (nombreDeEnemy == 0 && mob.lifePoints <= 0) {
                                     System.out.println("Vous avez vaincu tous les enemies \nVous avez remporté le combat !!! ");
+
                                     // clearConsole()
                                     break;
                                 }
@@ -191,7 +228,7 @@ public class Game {
                 }
 
             }
-        }
+  //      }
 
 
 
