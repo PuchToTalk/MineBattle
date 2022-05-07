@@ -15,7 +15,11 @@
 
 > b1 : jeu "fonction attaque" fonctionnel
 
-> b2 (27/04/22) : jeu "fonction défendre" fonctionnel (ajout des récompenses en cas de victoire)
+> b2 (20/04/22) : jeu "fonction défendre" fonctionnel (ajout des récompenses en cas de victoire)
+
+> b3 (27/04/22) : finition de l'ensemble des fonctions
+
+> b4 (30/04/22) : finition de la suite : choix rewards
 
 > w1 : (soon) Faire l'interface
 
