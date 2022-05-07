@@ -1,5 +1,5 @@
 # Sauvegardes & commits sur la branche DEVELOP
-**IMPORTANT : Voir branche "develop" pour les détails sur les commits et avancée du projet ^^**
+**IMPORTANT : Voir branche "develop" pour les détails sur les commits et avancée en temps réel du projet ^^**
 
 
 # Versions récentes sur branche master
