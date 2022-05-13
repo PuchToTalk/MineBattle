@@ -6,6 +6,7 @@ import java.util.ArrayList;
 public abstract class Hero {
     protected String name;
     public int lifePoints;
+    public int manaPoints;
     protected int armor;
     public int weaponDamage;
     protected ArrayList<Potion> potions;

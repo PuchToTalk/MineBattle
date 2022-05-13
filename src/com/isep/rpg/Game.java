@@ -172,7 +172,7 @@ public class Game {
                 System.out.println("Quantité de potions : " + hero.potions.size());
                 System.out.println("Quantité de nourritures : " + hero.lembas.size());
                 printSeperator(66);
-                System.out.println("Que comptez-vous faire? : \n1 : Attaquer \n2 : Se défendre \n3 : Utiliser un consommable \n4 : Fuir");
+                System.out.println("Que comptez-vous faire? : \n1 : Attaquer \n2 : Se défendre \n3 : Food HP \n4 : Potion Mana ");
                 int choixDecision = scanner.nextInt();
 
                 switch (choixDecision) {
@@ -254,9 +254,18 @@ public class Game {
 
                     case 3 -> {
                         System.out.println("");
+                        hero.giveFood();
+                        System.out.println("Il vous reste plus que " + hero.lembas.size() + " unité(s) de food");
+                        hero.lifePoints += hero.lifePoints/3;
+                        System.out.println("Vous avez désormais " + hero.lifePoints + " de point(s) de PV" );
+
                     }
                     case 4 -> {
                         System.out.println("");
+                        hero.givePotion();
+                        System.out.println("Il vous reste plus que " + hero.potions.size() + " unité(s) de potion");
+                        hero.manaPoints += hero.manaPoints/3;
+                        System.out.println("Vous avez désormais " + hero.manaPoints + " de point(s) de Mana" );
                     }
                 }
             }
@@ -296,15 +305,19 @@ public class Game {
                 }
                 case 3 -> {
                     System.out.println("");
+                    System.out.println("Vous avez décidé d'augmenté le nombre de potions de +1");
                 }
                 case 4 -> {
                     System.out.println("");
+                    System.out.println("Vous avez décidé d'augmenter le nombre de nourriture de +1");
                 }
                 case 5 -> {
                     System.out.println("");
+                    System.out.println("Vous avez décidé d'augmenter la quantité de flèches de +1");
                 }
                 case 6 -> {
                     System.out.println("");
+                    System.out.println("Vous avez décidé de diminuer le coût en mana de -1");
                     }
                 }
             }
