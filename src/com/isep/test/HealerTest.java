@@ -1,44 +1,39 @@
 package com.isep.test;
 
+
+import game.Model.BasicEnemy;
+import game.Model.Enemy;
+import game.Model.Healer;
+import game.Model.Potion;
+
 import static org.junit.jupiter.api.Assertions.*;
-import com.isep.rpg.Healer;
-import org.junit.jupiter.api.Test;
 
 class HealerTest {
-    HealerTest() {
+    Enemy e = new BasicEnemy.Builder(10).setName("Minion").setDamage(2).build();
+    Healer healer = new Healer.Builder(10).setArmor(3).setManaCost(2).setManaPoints(10).setName("Healer").setWeaponDamage(4).build();
+
+    @org.junit.jupiter.api.Test
+    void attack() {
+        healer.attack(e);
+        assertEquals(healer.getLifePoints(), 8);
     }
 
-    @Test
-    public void test() {
-        Healer healer = new Healer();
-        int vieMax = healer.lifePoints;
+    @org.junit.jupiter.api.Test
+    void defend() {
+        healer.defend(e);
+        assertEquals(healer.getLifePoints(), 10);
+    }
 
-        while(healer.lifePoints > 0) {
-            if (healer.lifePoints <= vieMax - vieMax / 2) {
-                if (healer.manaPoints >= healer.manaConsomme) {
-                    healer.attack();
-                    healer.lifePoints += healer.weaponDamage;
-                    if (healer.lifePoints > vieMax) {
-                        int soin = vieMax - healer.lifePoints + healer.weaponDamage;
-                        healer.lifePoints = vieMax;
-                        System.out.println("Gain de " + soin + " point(s) de vie");
-                    } else {
-                        System.out.println("Gain de " + healer.weaponDamage + " point(s) de vie");
-                    }
+    @org.junit.jupiter.api.Test
+    void useConsumable() {
+        healer.useConsumable(new Potion.Builder(2).build());
+        assertEquals(healer.getManaPoints(), 12);
+    }
 
-                    System.out.println("Il vous reste " + healer.manaPoints + " point(s) de mana");
-                } else {
-                    System.out.println("Il n'y a plus de point de mana");
-                }
-            }
 
-            healer.defend();
-            if (healer.lifePoints > 0) {
-                System.out.println("Vous disposez de " + healer.lifePoints + " points(s)de vie");
-            } else {
-                System.out.println("Il ne vous reste plus de vie. \nVous avez perdu.");
-            }
-        }
-
+    @org.junit.jupiter.api.Test
+    void increaseArrmor(){
+        healer.increaseArmor();
+        assertEquals(healer.getArmor(),4);
     }
 }
