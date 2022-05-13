@@ -1,335 +1,352 @@
 package com.isep.rpg;
-import com.isep.utils.InputParser;
 
 import java.util.ArrayList;
-import java.util.Iterator;
+import java.util.List;
 import java.util.Random;
-import java.util.Scanner;
 
-public class Game {
-    private ArrayList<Hero> heroes;
-    private ArrayList<Enemy> enemies;
+
+/**
+ * @auteur  (Paul)
+ * @version (v.o1 - 13/05/2022)
+ */
+
+
+public class Game implements ScenarioGame {
+    private List<Hero> heroes;
+    private List<Enemy> enemies;
+    private int totalPlayers;
     private int playerTurn;
-    private InputParser inputParser;
+    private int enemyTurn;
+    private final Random random = new Random();
+    ;
 
-    public Game() {
+    public Game(int x, int mage, int healer, int hunter, int warrior) {
+        totalPlayers = x;
+        heroes = new ArrayList<>();
+        enemies = new ArrayList<>();
+        playerTurn = random.nextInt(x);
+        enemyTurn = random.nextInt(x);
+        loadHeroes(mage, healer, hunter, warrior);
+        loadEnemies(totalPlayers);
     }
 
-    public static void clearConsole() {
-        for (int i = 0; i < 50; i++)
-            System.out.println();
+    @Override
+    public boolean lose() {
+        System.out.println("Lose: " + " H/E" + isHeroesLeft() + "  " + isEnemiesLeft());
+        return !isHeroesLeft() && isEnemiesLeft();
     }
 
 
-    public static void printSeperator(int n) {
-        for (int i = 0; i < n; i++)
-            System.out.print("-");
-        System.out.println();
-
+    @Override
+    public boolean win() {
+        if (!isEnemiesLeft() && isHeroesLeft()) {
+            playerTurn = 0;
+            enemyTurn = 0;
+            return true;
+        }
+        return false;
     }
 
-    public void playGame() {
-        Scanner scanner = new Scanner(System.in);
-        printSeperator(66);
-        System.out.println("Choix du nombre de héros :");
-        int nombreDeHeros = scanner.nextInt();
-        this.heroes = new ArrayList();
-
-        int k;
-        int z;
-        for (k = 1; k <= nombreDeHeros; ++k) {
-            Scanner scan = new Scanner(System.in);
-            String nomDuHero;
-            if (k == 1) {
-                printSeperator(66);
-                System.out.println("Choix du nom de notre premier héros ?");
-                nomDuHero = scan.nextLine();
-
-                do {
-                    do {
-                        printSeperator(66);
-                        System.out.println("Choix du classe de notre / nos héro(s) ? \n1 : Warrior \n2 : Hunter \n3 : Mage\n4 : Healer");
-                        z = scan.nextInt();
-                    } while (z < 1);
-                } while (z > 4);
-            } else {
-                System.out.println("\n------------------------------------------------------------------\n");
-                System.out.println("Choix du nom de notre " + k + "ème héros :");
-                nomDuHero = scan.nextLine();
-
-                do {
-                    do {
-                        System.out.println("\n------------------------------------------------------------------\n");
-                        System.out.println("Choix de la classe de ce héro : \n1 : Warrior \n2 : Hunter \n3 : Mage\n4 : Healer");
-                        z = scan.nextInt();
-                    } while (z < 1);
-                } while (z > 4);
-            }
-
-            switch (z) {
-                case 1 -> {
-                    Warrior warrior = new Warrior();
-                    warrior.name = nomDuHero;
-                    this.heroes.add(warrior);
-                }
-                case 2 -> {
-                    Hunter hunter = new Hunter();
-                    hunter.name = nomDuHero;
-                    this.heroes.add(hunter);
-                }
-                case 3 -> {
-                    Mage mage = new Mage();
-                    mage.name = nomDuHero;
-                    this.heroes.add(mage);
-                }
-                case 4 -> {
-                    Healer healer = new Healer();
-                    healer.name = nomDuHero;
-                    this.heroes.add(healer);
-                }
-            }
-        }
-
-
-        for (Hero hero : this.heroes) {
-            hero.potions = new ArrayList();
-
-            for (k = 0; k < 5; ++k) {
-                hero.givePotion();
-            }
-
-            hero.lembas = new ArrayList();
-
-            for (k = 0; k < 10; ++k) {
-                hero.giveFood();
-            }
-            System.out.println("\n------------------------------------------------------------------\n");
-            System.out.println("Nom du héro : " + hero.name);
-            System.out.println(hero.getClass());
-            System.out.println("Nombre de HP : " + hero.lifePoints);
-            System.out.println("Quantité de potions : " + hero.potions.size());
-            System.out.println("Quantité de nourritures : " + hero.lembas.size());
-            System.out.println("\n------------------------------------------------------------------\n");
-            turnTime(2);
-            Game.clearConsole();
-        }
-
-        this.generateCombat(this.heroes.size());
-
-
-        //this.win();
-        //
+    @Override
+    public List<Hero> getHeroList() {
+        return this.heroes;
     }
 
-    public void generateCombat(int nombreDeHerosVivant) {
-        this.enemies = new ArrayList();
-        Random random = new Random();
-        int combatAleatoire = random.nextInt(10);
-        BasicEnemy enemy;
 
-        // Condition pour apparition d'un BOSS (1/10 de proba)
-        if (combatAleatoire == 0) {
-            System.out.println("\n------------------------------------------------------------------\n");
-            System.out.println("Un boss apparaît et il est accompagné de ses deux serviteurs !\nDébut du combat");
-            Enemy boss = new Boss();
-            enemy = new BasicEnemy();
-            Enemy enemy2 = new BasicEnemy();
-            this.enemies.add(boss);
-            this.enemies.add(enemy);
-            this.enemies.add(enemy2);
-        }
-        // Condition pour apparition de ENEMY basique (9/10 de proba)
-        else {
-            System.out.println(nombreDeHerosVivant + " monstre(s) vous fait/font face !\nDébut du combat");
+    @Override
+    public String attack() {
 
-            for (int i = 0; i < nombreDeHerosVivant; ++i) {
-                enemy = new BasicEnemy();
-                this.enemies.add(enemy);
-            }
-        }
-
-        // on get l'iterator à partir de la liste enemies
-
-        // tant qu'il existe un élément contenu dans la liste, on le fait apparaître
-
-        for (Enemy enemy1 : this.enemies) {
-            System.out.println("Un " + enemy1.name + " apparaît");
-
-        }
-        int nombreDeEnemy = this.enemies.size();
-
-        while (nombreDeHerosVivant > 0 && nombreDeEnemy > 0) {
-            for (int i = 0; i < nombreDeHerosVivant; i++) {
-                Hero hero = this.heroes.get(i);
-                //    for (Hero hero : this.heroes) {
-                //        for (Enemy mob : this.enemies) {
-
-                Scanner scanner = new Scanner(System.in);
-
-                printSeperator(66);
-                System.out.println("Nom du héro : " + hero.name);
-                System.out.println("Nombre de HP : " + hero.lifePoints);
-                System.out.println("Quantité de potions : " + hero.potions.size());
-                System.out.println("Quantité de nourritures : " + hero.lembas.size());
-                printSeperator(66);
-                System.out.println("Que comptez-vous faire? : \n1 : Attaquer \n2 : Se défendre \n3 : Food HP \n4 : Potion Mana ");
-                int choixDecision = scanner.nextInt();
-
-                switch (choixDecision) {
-                    case 1 -> {
-                        System.out.println("Quel ennemi attaquez-vous ? : ");
-                        int positionEnemy = scanner.nextInt();
-                        if (positionEnemy - 1 <= this.enemies.size()) {
-
-                            Enemy mob = this.enemies.get(positionEnemy - 1);
-                            Random alea = new Random();
-                            // hero.weaponDamage = alea.nextInt(10) + 1;
-                            hero.attack();
-                            System.out.println(hero.name + " a infligé " + hero.weaponDamage + " point(s) de dégât");
-                            mob.lifePoints -= hero.weaponDamage;
-                            hero.lifePoints -= mob.weaponDamage;
-                            if (hero.lifePoints > 0) {
-                                System.out.println(hero.name + " a subi " + mob.weaponDamage + " de dégâts et a encore " + hero.lifePoints + " point(s) de vie");
-                            } else {
-                                int pos = this.heroes.lastIndexOf(hero.name);
-                                System.out.println(hero.name + " a subi " + mob.weaponDamage + " de dégâts");
-                                System.out.println(hero.name + " n'a plus de vie...\n");
-                                nombreDeHerosVivant -= 1;
-                                System.out.println(pos + 1);
-                                this.heroes.remove(pos + 1);
-                                if (nombreDeHerosVivant == 0 && (this.heroes.isEmpty())) {
-                                    Game.clearConsole();
-                                    System.out.println("Il ne vous reste plus de vie...\nVous avez perdu le combat");
-
-                                    break;
-                                }
-                            }
-
-                            if (mob.lifePoints > 0) {
-                                System.out.println(mob.name + " vous fait face et a encore " + mob.lifePoints + " de PV");
-                            } else {
-                                System.out.println(mob.name + " a été vaincu");
-                                nombreDeEnemy -= 1;
-                                this.enemies.remove(positionEnemy - 1);
-
-                            }
-
-                            if (nombreDeEnemy == 0 && (this.enemies.isEmpty())) {
-                                System.out.println("Vous avez vaincu tous les ennemies \nVous avez remporté le combat !!! ");
-                                // wint()
-                                turnTime(4);
-                                this.choixRecompense(this.heroes.size());
-                                // clearConsole()
-                                break;
-                            }
-                        }
-
-                    }
-                    case 2 -> {
-                        System.out.println("Vous avez choisi de vous défendre ");
-
-                            int actu = hero.lifePoints;
-                            hero.defend();
-                            int subi = actu - hero.lifePoints;
-
-                            if (hero.lifePoints > 0) {
-                                System.out.println(hero.name + " a subi " + subi + " de dégâts");
-                                System.out.println(hero.name + " a toujours " + hero.lifePoints + " de point(s) de vie");
-                            } else {
-                                int pos = this.heroes.lastIndexOf(hero.name);
-                                System.out.println(hero.name + " a subi " + subi + " de dégâts");
-                                System.out.println(hero.name + " n'a plus de vie...\n");
-                                nombreDeHerosVivant -= 1;
-                                System.out.println(pos + 1);
-                                this.heroes.remove(pos + 1);
-                                if (nombreDeHerosVivant == 0 && (this.heroes.isEmpty())) {
-                                    Game.clearConsole();
-                                    System.out.println("Il ne vous reste plus de vie...\nVous avez perdu le combat");
-
-                                    break;
-                                }
-                            }
-                    }
-
-
-                    case 3 -> {
-                        System.out.println("");
-                        hero.giveFood();
-                        System.out.println("Il vous reste plus que " + hero.lembas.size() + " unité(s) de food");
-                        hero.lifePoints += hero.lifePoints/3;
-                        System.out.println("Vous avez désormais " + hero.lifePoints + " de point(s) de PV" );
-
-                    }
-                    case 4 -> {
-                        System.out.println("");
-                        hero.givePotion();
-                        System.out.println("Il vous reste plus que " + hero.potions.size() + " unité(s) de potion");
-                        hero.manaPoints += hero.manaPoints/3;
-                        System.out.println("Vous avez désormais " + hero.manaPoints + " de point(s) de Mana" );
-                    }
+        if (isLive(getHeroByTurn())) {
+            if (getHeroByTurn() instanceof SpellCaster) {
+                if (getHeroByTurn().getManaPoints() < getHeroByTurn().getManaCost()) {
+                    getHeroByTurn().attack(getEnemyByTurn());
+                    return "Sorry, Hero cannot cast spell, Because Mana-Points less Mana-Cost";
                 }
             }
-
+            getHeroByTurn().attack(getEnemyByTurn());
+            if (win() || lose()) {
+                return "Game Finished";
+            }
+            getEnemyByTurn().damage(getHeroByTurn());
+            changeTurn();
+            return "Attacked Successfully";
+        } else {
+            changeTurn();
+            return consumePotion();
         }
     }
 
-    public void choixRecompense(int NombreHero) {
-        for (Hero hero : this.heroes) {
-
-            System.out.println("\nVoici vos STATS actuellement : \n");
-            turnTime(1);
-            System.out.println("\n------------------------------------------------------------------\n");
-            System.out.println("Nom du héro : " + hero.name);
-            System.out.println(hero.getClass());
-            System.out.println("Nombre de HP : " + hero.lifePoints);
-            System.out.println("Armure : " + hero.armor);
-            System.out.println("Quantité de potions : " + hero.potions.size());
-            System.out.println("Quantité de nourritures : " + hero.lembas.size());
-            System.out.println("\n------------------------------------------------------------------\n");
-            turnTime(3);
-
-
-            System.out.println("Quelle récompense choisir ? : \n1 : Armure ++ \n2 : Arme ++ \n3 : Potion Qtité ++ \n4 : Nourriture Qtité ++ \n5 : Flèche Qtité ++  \n6 : Coût Mana");
-            Scanner scanner = new Scanner(System.in);
-            int choixRecomp = scanner.nextInt();
-            printSeperator(66);
-            switch (choixRecomp) {
-                case 1 -> {
-                    System.out.println("Vous avez choisi d'augmenter votre armure de 1 point");
-                    hero.armor += 1;
-                    System.out.println(hero.armor);
-                }
-                case 2 -> {
-                    System.out.println("");
-                    System.out.println("Vous avez choisi d'augmenter votre arme de 1 point");
-                }
-                case 3 -> {
-                    System.out.println("");
-                    System.out.println("Vous avez décidé d'augmenté le nombre de potions de +1");
-                }
-                case 4 -> {
-                    System.out.println("");
-                    System.out.println("Vous avez décidé d'augmenter le nombre de nourriture de +1");
-                }
-                case 5 -> {
-                    System.out.println("");
-                    System.out.println("Vous avez décidé d'augmenter la quantité de flèches de +1");
-                }
-                case 6 -> {
-                    System.out.println("");
-                    System.out.println("Vous avez décidé de diminuer le coût en mana de -1");
-                    }
-                }
-            }
-        }
-
-
-        private void turnTime ( int time){
-            try {
-                Thread.sleep(time * 1000L);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-        }
-
+    @Override
+    public List<Enemy> getEnemyList() {
+        return this.enemies;
     }
+
+
+    @Override
+    public String defend() {
+        if (isLive(getHeroByTurn())) {
+            getHeroByTurn().defend(getEnemyByTurn());
+            if (win() || lose()) {
+                return "Game Finished";
+            }
+            changeTurn();
+            return "Defend";
+        } else {
+            changeTurn();
+            return defend();
+        }
+    }
+
+
+    @Override
+    public String consumeFood() {
+        if (isLive(getHeroByTurn())) {
+            List<Food> foods = getHeroByTurn().getLembas();
+            if (foods.size() <= 0) {
+                return "Not Enough Potions Left";
+            }
+            getHeroByTurn().useConsumable(foods.get(0));
+            foods.remove(0);
+            changeTurn();
+            return "Successfully Food Taken";
+        } else {
+            changeTurn();
+            return consumePotion();
+        }
+    }
+
+
+    @Override
+    public String consumePotion() {
+        if (isLive(getHeroByTurn())) {
+            List<Potion> potions = getHeroByTurn().getPotions();
+            if (getHeroByTurn() instanceof SpellCaster) {
+                if (potions.size() <= 0) {
+                    return "Not Enough Potions Left:";
+                }
+                getHeroByTurn().useConsumable(potions.get(0));
+                potions.remove(0);
+                changeTurn();
+                return "Potion Successfully Taken";
+            }
+            return "Sorry, Hero does not Belong to Spell-Caster Family";
+        } else {
+            changeTurn();
+            return consumePotion();
+        }
+    }
+
+    @Override
+    public String increaseArmor() {
+        String res =getHeroByTurn().increaseArmor();
+        nextHero();
+        return res;
+    }
+
+    @Override
+    public String increaseWeaponDamage() {
+        String res = getHeroByTurn().increaseWeaponDamage();
+        nextHero();
+        return res;
+    }
+
+    @Override
+    public String increaseFoodAndPotionEffectiveness() {
+        String res = getHeroByTurn().increasePotionAndFoodEffectiveness();
+        nextHero();
+        return res;
+    }
+
+    @Override
+    public String increasePotionAndFoodNumber() {
+        String res = getHeroByTurn().increasePotionAndFoodNumber();
+        nextHero();
+        return res;
+    }
+
+    @Override
+    public String increaseArrows() {
+        if (getHeroByTurn() instanceof Hunter) {
+            String res = getHeroByTurn().increaseArmor();
+            nextHero();
+            return res;
+        }
+        return "Sorry, Hero Does not belong to the Hunter Family";
+    }
+
+    @Override
+    public String decreaseManaCost() {
+        if (getHeroByTurn() instanceof SpellCaster) {
+            String res = getHeroByTurn().decraseManaCost();
+            nextHero();
+            return res;
+        }
+        return "Sorry, Hero Does not belong to the SpellCaster Family";
+    }
+
+    @Override
+    public String newCombat() {
+        enemies.clear();
+        loadEnemies(totalPlayers);
+        enemyTurn = getEnemyTurn();
+        return "Ready Battle Field";
+    }
+
+
+    public int getEnemyTurn() {
+        return this.enemyTurn;
+    }
+
+
+    public int getPlayerTurn() {
+        return this.playerTurn % totalPlayers;
+    }
+
+
+    private void loadHeroes(int mage, int healer, int hunter, int warrior) {
+        if (mage > 0) {
+            for (int i = 0; i < mage; i++) {
+                heroes.add(
+                        new Mage.Builder(10)
+                                .setName("Mage-" + (i + 1))
+                                .setManaCost(1)
+                                .setManaPoints(10)
+                                .setArmor(3)
+                                .setWeaponDamage(3)
+                                .build()
+                );
+            }
+        }
+        if (healer > 0) {
+            for (int i = 0; i < healer; i++) {
+                heroes.add(
+                        new Healer.Builder(10)
+                                .setName("Healer-" + (i + 1))
+                                .setManaCost(1)
+                                .setManaPoints(10)
+                                .setArmor(3)
+                                .setWeaponDamage(3)
+                                .build()
+                );
+            }
+        }
+        if (hunter > 0) {
+            for (int i = 0; i < hunter; i++) {
+                heroes.add(
+                        new Hunter.Builder(10)
+                                .setName("Hunter-" + (i + 1))
+                                .setArrows(10).setArmor(3)
+                                .setWeaponDamage(3)
+                                .build()
+                );
+            }
+        }
+        if (warrior > 0) {
+            for (int i = 0; i < warrior; i++) {
+                heroes.add(
+                        new Warrior.Builder(10)
+                                .setName("Warrior-" + (i + 1))
+                                .setArmor(3)
+                                .setWeaponDamage(3)
+                                .build()
+                );
+            }
+        }
+    }
+
+    private void loadEnemies(int x) {
+        enemies.add(
+                new Boss.Builder(15)
+                        .setName("Boss Fighter")
+                        .setDamage(2)
+                        .build()
+        );
+        x--;
+        if (x > 0) {
+            for (int i = 0; i < x; i++) {
+                enemies.add(
+                        new BasicEnemy.Builder(10)
+                                .setName("Mini-" + (i + 1))
+                                .setDamage(1)
+                                .build()
+                );
+            }
+        }
+    }
+
+    private int getET() {
+        int x = random.nextInt(totalPlayers);
+        for (int i = 0; i < totalPlayers; i++) {
+            if (isLive(getEnemyByIndex(getIndex(x, i)))) {
+                return getIndex(x + i, totalPlayers);
+            }
+        }
+        return -1;
+    }
+
+    public Enemy getEnemyByTurn() {
+        return enemies.get(enemyTurn);
+    }
+
+    private Hero getHeroByTurn() {
+        return heroes.get(getIndex());
+    }
+
+    private boolean isHeroesLeft() {
+        int h = 0;
+        for (Hero hero : heroes) {
+            if (isLive(hero)) {
+                h++;
+            }
+        }
+
+        System.out.println("Heroes: " + h);
+
+        return h > 0;
+    }
+
+    private boolean isEnemiesLeft() {
+        int e = 0;
+        for (Enemy enemy : enemies) {
+            if (isLive(enemy)) {
+                e++;
+            }
+        }
+
+        System.out.println("Enemies: " + e);
+
+        return e > 0;
+    }
+
+    private void changeTurn() {
+        playerTurn++;
+        enemyTurn = getET();
+    }
+
+    private Enemy getEnemyByIndex(int index) {
+        return this.enemies.get(index);
+    }
+
+    private boolean isLive(Hero hero) {
+        return hero.getLifePoints() > 0;
+    }
+
+    private boolean isLive(Enemy enemy) {
+        return enemy.getLifePoints() > 0;
+    }
+
+    private int getIndex(int x, int i) {
+        return (x + i) % totalPlayers;
+    }
+
+    private int getIndex() {
+        return playerTurn % totalPlayers;
+    }
+
+    private void nextHero() {
+        playerTurn++;
+        playerTurn %= totalPlayers;
+        System.out.println(playerTurn + "      Next");
+    }
+
+}

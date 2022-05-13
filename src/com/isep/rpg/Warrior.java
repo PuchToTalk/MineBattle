@@ -1,6 +1,5 @@
 package com.isep.rpg;
 
-package game.Model;
 
 import java.util.ArrayList;
 import java.util.List;

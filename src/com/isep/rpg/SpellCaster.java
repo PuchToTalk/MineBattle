@@ -4,6 +4,8 @@ package com.isep.rpg;
  * @auteur  (Paul)
  * @version (v.o1 - 13/05/2022)
  */
+
+
 public abstract class SpellCaster extends Hero {
     protected int manaPoints;
     protected int manaCost;

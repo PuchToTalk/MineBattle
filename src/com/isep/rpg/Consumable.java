@@ -1,4 +1,12 @@
 package com.isep.rpg;
 
-public interface Consumable {
+/**
+ * @auteur  (Paul)
+ * @version (v.o1 - 13/05/2022)
+ */
+
+
+public interface Consumable
+{
+    int consume();
 }
