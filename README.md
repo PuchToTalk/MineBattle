@@ -40,4 +40,44 @@ Continuité : l'intéraction "Choix du héro"
 > Système de récompense (pas encore)
 > Optimisation du code coverage (en général + début text)
 
+09/04/22
+Avancement intéraction Combat battle mais pb
+> N'arrive pas à combattre adversaire autre que la position du héro (i)
+> boucle for pour simuler le combat
+> Blocage sur le principe système battle à rotation
+
+
+17/04/22
+Grande pause
+> Fin du système de Battle (choix d'adversaire besoin de corrections)
+> Choix récompenses déjà commencé
+
+
+22/04/22
+Reprise en main
+> Fonction attaquer fonctionnel
+> Tests unitaires correct
+> Correction du système de battle
+> Avancement choix récompenses
+
+
+27/04/22
+Finalisation système battle
+> Fin correction apport pour choix de l'adversaire
+> Maj de l'affichage pour + agréable avec fonction printSeparator() / clearConsole()
+> fonction Defendre terminé
+> Avancement choix récompenses (armures, potions à faire)
+
+
+06/05/22
+Optimisation des différentes branches de la GameLogic avant implémentation
+> partie Enemy : Basic Enemy / Boss
+> partie Hero : Warrior / SpellCaster / Hunter
+> partie Consummable : Food / Potion
+
+
+13/05/22
+Finalisation GameLogic 99 %
+> Same branches
+
 
