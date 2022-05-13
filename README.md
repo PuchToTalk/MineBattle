@@ -69,4 +69,15 @@ Finalisation système battle
 > Avancement choix récompenses (armures, potions à faire)
 
 
+06/05/22
+Optimisation des différentes branches de la GameLogic avant implémentation
+> partie Enemy : Basic Enemy / Boss
+> partie Hero : Warrior / SpellCaster / Hunter
+> partie Consummable : Food / Potion
+
+
+13/05/22
+Finalisation GameLogic 99 %
+> Same branches
+
 
