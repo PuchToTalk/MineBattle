@@ -9,7 +9,10 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-
+/**
+ * @auteur  (Paul)
+ * @version (v.o1 - 13/05/2022)
+ */
 
 public class Main extends Application {
     @Override
