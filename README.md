@@ -21,5 +21,12 @@
 
 > b4 (30/04/22) : finition de la suite : choix rewards
 
-> w1 : (soon) Faire l'interface
+> b5 (06/05/22) : finition de l'histoire complète
+
+> o1 (13/05/22) : optimisation du jeu (intéractions)
+
+
+(...)
+
+> w1 : (in progress) Faire l'interface
 
