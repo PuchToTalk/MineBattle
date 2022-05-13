@@ -1,8 +1,5 @@
 package com.isep.rpg;
 
-package game.Model;
-
-
 /**
  * @auteur  (Paul)
  * @version (v.o1 - 13/05/2022)
