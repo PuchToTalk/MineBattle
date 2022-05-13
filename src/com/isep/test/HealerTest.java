@@ -1,5 +1,9 @@
 package com.isep.test;
 
+/**
+ * @auteur  (Paul)
+ * @version (v.o1 - 13/05/2022)
+ */
 
 import game.Model.BasicEnemy;
 import game.Model.Enemy;
