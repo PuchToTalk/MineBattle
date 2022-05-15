@@ -8,7 +8,7 @@ import java.util.*;
  * Simplficiation de la GameLogic
  *
  * @auteur(s)  (Paul)
- * @version (v.o2 - 15/05/2022)
+ * @version (v.o2 - 16/05/2022)
  */
 
 

@@ -17,6 +17,10 @@ public class Warrior extends Hero {
         this.weaponDamage = b.weaponDamage;
         this.lembas = b.lembas;
         this.potions = b.potions;
+
+        loadFood();
+
+
     }
 
     public int getManaCost() {
@@ -40,6 +44,13 @@ public class Warrior extends Hero {
         }
     }
 
+    @Override
+    public void useConsumable(Consumable con) {
+        this.lifePoints += con.consume();
+    }
+
+
+
     public static class Builder {
         public int lifePoints;
         public int armor;
@@ -48,10 +59,12 @@ public class Warrior extends Hero {
         public List<Potion> potions;
         public List<Food> lembas;
 
-
         public Builder(int lifePoints) {
-            this.lifePoints = lifePoints;
-        }
+        this.lifePoints = lifePoints;
+        potions = new ArrayList<>();
+        lembas = new ArrayList<>();
+    }
+
         public Builder setName(String n) {
             this.name = n;
             return this;

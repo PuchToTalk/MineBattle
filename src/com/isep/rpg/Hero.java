@@ -4,7 +4,7 @@ import java.util.List;
 
 /**
  * @auteur  (Paul)
- * @version (v.o1 - 13/05/2022)
+ * @version (v.o1 - 16/05/2022)
  */
 
 
@@ -40,6 +40,12 @@ public abstract class Hero {
         return this.potions;
     }
 
+    public abstract void attack(Enemy e);
+
+    public abstract void defend(Enemy e);
+
+    public abstract void useConsumable(Consumable con);
+
 
     @Override
     public String toString() {
@@ -51,6 +57,7 @@ public abstract class Hero {
                 '}';
     }
 }
+
 
 
 
