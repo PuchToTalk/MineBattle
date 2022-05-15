@@ -6,18 +6,17 @@ import java.util.List;
 
 /**
  * @auteur  (Paul)
- * @version (v.o1 - 15/05/2022)
+ * @version (v.o1 - 16/05/2022)
  */
 
-
 public class Warrior extends Hero {
-    public Warrior() {
-        this.name;
-        this.armor;
-        this.lifePoints;
-        this.weaponDamage;
-        this.lembas;
-        this.potions;
+    public Warrior(Builder b) {
+        this.name = b.name;
+        this.armor = b.armor;
+        this.lifePoints = b.lifePoints;
+        this.weaponDamage = b.weaponDamage;
+        this.lembas = b.lembas;
+        this.potions = b.potions;
     }
 
     public int getManaCost() {
@@ -40,3 +39,38 @@ public class Warrior extends Hero {
             this.lifePoints += extraEffect;
         }
     }
+
+    public static class Builder {
+        public int lifePoints;
+        public int armor;
+        public String name;
+        public int weaponDamage;
+        public List<Potion> potions;
+        public List<Food> lembas;
+
+
+        public Builder(int lifePoints) {
+            this.lifePoints = lifePoints;
+        }
+        public Builder setName(String n) {
+            this.name = n;
+            return this;
+        }
+
+        public Builder setArmor(int armor) {
+            this.armor = armor;
+            return this;
+        }
+
+        public Builder setWeaponDamage(int wd) {
+            this.weaponDamage = wd;
+            return this;
+        }
+
+        public Warrior build() {
+
+            return new Warrior(this);
+        }
+    }
+}
+
