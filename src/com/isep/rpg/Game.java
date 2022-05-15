@@ -1,10 +1,17 @@
 package com.isep.rpg;
 import com.isep.utils.InputParser;
 
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.Random;
-import java.util.Scanner;
+import java.util.*;
+
+/**
+ * @PS : Changements apportés :
+ * Simplficiation de la GameLogic
+ *
+ * @auteur(s)  (Paul)
+ * @version (v.o2 - 15/05/2022)
+ */
+
+
 
 public class Game {
     private ArrayList<Hero> heroes;
@@ -222,9 +229,35 @@ public class Game {
                                 // clearConsole()
                                 break;
                             }
-                        }
 
+
+
+                            /** Réécriture de la fonction défense **/
+                            public String attack () {
+
+                                if (isLive(getHeroByTurn())) {
+                                    if (getHeroByTurn() instanceof SpellCaster) {
+                                        if (getHeroByTurn().getManaPoints() < getHeroByTurn().getManaCost()) {
+                                            getHeroByTurn().attack(getEnemyByTurn());
+                                            return "Navré, ce héro ne peut plus attaquer, Plus de Mana en réserve";
+                                        }
+                                    }
+                                    getHeroByTurn().attack(getEnemyByTurn());
+                                    if (win() || lose()) {
+                                        return "Jeu terminé";
+                                    }
+                                    getEnemyByTurn().damage(getHeroByTurn());
+                                    changeTurn();
+                                    return "Attaque réussi";
+                                } else {
+                                    changeTurn();
+                                    return consumePotion();
+                                }
+                            }
+                        }
                     }
+
+
                     case 2 -> {
                         System.out.println("Vous avez choisi de vous défendre ");
 
@@ -247,8 +280,24 @@ public class Game {
                                 System.out.println("Il ne vous reste plus de vie...\nVous avez perdu le combat");
 
                                 break;
+
                             }
                         }
+
+
+                        /** Réécriture de la fonction défense **/
+
+                        public String defend() {
+                            if (isLive(getHeroByTurn())) {
+                                getHeroByTurn().defend(getEnemyByTurn());
+                                if (win() || lose()) {
+                                    return "Jeu terminé";
+                                }
+                                changeTurn();
+                                return "Defense";
+                            } else {
+                                changeTurn();
+                                return defend();
                     }
 
 
@@ -256,20 +305,54 @@ public class Game {
                         System.out.println("");
                         hero.giveFood();
                         System.out.println("Il vous reste plus que " + hero.lembas.size() + " unité(s) de food");
-                        hero.lifePoints += hero.lifePoints/3;
-                        System.out.println("Vous avez désormais " + hero.lifePoints + " de point(s) de PV" );
+                        hero.lifePoints += hero.lifePoints / 3;
+                        System.out.println("Vous avez désormais " + hero.lifePoints + " de point(s) de PV");
+
+                        public String consumeFood () {
+                            if (isLive(getHeroByTurn())) {
+                                List<Food> foods = getHeroByTurn().getLembas();
+                                if (foods.size() <= 0) {
+                                    return "Plus de Food disponible";
+                                }
+                                getHeroByTurn().useConsumable(foods.get(0));
+                                foods.remove(0);
+                                changeTurn();
+                                return "Food a été utilisé";
+                            } else {
+                                changeTurn();
+                                return consumePotion();
+                            }
+                        }
 
                     }
                     case 4 -> {
                         System.out.println("");
                         hero.givePotion();
                         System.out.println("Il vous reste plus que " + hero.potions.size() + " unité(s) de potion");
-                        hero.manaPoints += hero.manaPoints/3;
-                        System.out.println("Vous avez désormais " + hero.manaPoints + " de point(s) de Mana" );
+                        hero.manaPoints += hero.manaPoints / 3;
+                        System.out.println("Vous avez désormais " + hero.manaPoints + " de point(s) de Mana");
+
+                        public String consumePotion () {
+                            if (isLive(getHeroByTurn())) {
+                                List<Potion> potions = getHeroByTurn().getPotions();
+                                if (getHeroByTurn() instanceof SpellCaster) {
+                                    if (potions.size() <= 0) {
+                                        return "Plus de Potion disponible";
+                                    }
+                                    getHeroByTurn().useConsumable(potions.get(0));
+                                    potions.remove(0);
+                                    changeTurn();
+                                    return "Potion a été utilisé";
+                                }
+                                return "Navré, ceci est réservé aux héros Spell-Caster";
+                            } else {
+                                changeTurn();
+                                return consumePotion();
+                            }
+                        }
                     }
                 }
             }
-
         }
     }
 
@@ -330,6 +413,34 @@ public class Game {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-    }
 
-}
+
+
+        @Override
+        public boolean lose() {
+            System.out.println("Statut : " + " Héros est-il vivant ? " + isHeroesLeft() + " Ennemis est-il vivant ? " + isEnemiesLeft());
+            return !isHeroesLeft() && isEnemiesLeft();
+        }
+
+
+        @Override
+        public boolean win() {
+            if (!isEnemiesLeft() && isHeroesLeft()) {
+                playerTurn = 0;
+                enemyTurn = 0;
+                return true;
+            }
+            return false;
+        }
+
+
+        @Override
+        public List<Hero> getHeroList() {
+            return this.heroes;
+        }
+
+
+
+
+
+    }
