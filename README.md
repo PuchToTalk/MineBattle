@@ -84,11 +84,15 @@ Continuité gameLogic 95 %
 
 14/05/22
 GameLogic terminé 99 %
-> vérification & tests unitaires
+> vérification & tests unitaires établies pour chaque classe avec fct attack() / défense()
 
 
 15/05/22
 Optimisation de chaque classes
-> écriture du commentaire sur chaque classe (cf UML diagram)
+> Simplficiation de la classe Game (Pour la GameLogic)
+> Au lieu d'avoir system.print.ln le déroulement <-> implémenter dans une fonction 
+> exemple : Réécriture de la fonction attaque / défense / food / potions (dans la switch)
+
+
 
 
