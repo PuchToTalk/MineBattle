@@ -1,33 +1,51 @@
 package com.isep.rpg;
 
 
-import java.util.Random;
+/**
+ * @auteur  (Paul)
+ * @version (v.o1 - 13/05/2022)
+ */
+
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class Mage extends SpellCaster {
-    public Mage() {
-        this.lifePoints = 10;
-        this.armor = 2;
-        this.manaPoints = 20;
-        this.manaConsomme = 3;
+    public Mage(Builder b) {
+        this.manaCost = b.manaCost;
+        this.name = b.name;
+        this.manaPoints = b.manaPoints;
+        this.armor = b.armor;
+        this.lifePoints = b.lifePoints;
+        this.weaponDamage = b.weaponDamage;
+        this.lembas = b.lembas;
+        this.potions = b.potions;
+        loadFood();
+        loadPotion();
     }
 
-    public void attack() {
-        Random random = new Random();
-        this.weaponDamage = random.nextInt(7) + 3;
-        this.manaPoints -= this.manaConsomme;
+
+    @Override
+    public void attack(Enemy e) {
+        this.lifePoints -= e.getDamage();
+        this.manaPoints -= this.manaCost;
     }
 
-    public void defend() {
-        Random random = new Random();
-        int degat = random.nextInt(7);
-        int defence = random.nextInt(7);
-        if (defence < 5 && degat > this.armor) {
-            this.lifePoints += this.armor - degat;
+    @Override
+    public void defend(Enemy e) {
+        int extraEffect = this.armor - e.getDamage();
+        if (extraEffect < 0) {
+            this.lifePoints += extraEffect;
         }
-
     }
 
-    public void useConsumable(Consumable consumable) {
+    @Override
+    public void useConsumable(Consumable con) {
+        System.out.println(con instanceof Potion);
+        if (con instanceof Potion) {
+            this.manaPoints += con.consume();
+        } else if (con instanceof Food) {
+            this.lifePoints += con.consume();
+        }
     }
 }
-

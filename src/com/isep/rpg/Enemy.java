@@ -1,8 +1,11 @@
 package com.isep.rpg;
 
-
 /**
- * @auteur  (Paul)
+ * @PS : Class ENEMY
+ * Cette classe est la classe mère de deux autres classes (BasicEnemy & Boss)
+ * Attributs sur LifePoints (points de vie) / name / damage
+ *
+ * @auteur(s)  (Paul)
  * @version (v.o1 - 13/05/2022)
  */
 
@@ -26,8 +29,10 @@ public abstract class Enemy
         return this.name;
     }
 
-
-    /** Les méthodes */
+    /**
+     * Fonction qui provoque des dégâts au HERO
+     * @param h = on cible le héro qui nous a attaqué
+     */
 
 
     public void damage(Hero h){

@@ -1,34 +1,44 @@
 package com.isep.rpg;
 
+import java.util.List;
 
-import java.util.ArrayList;
+/**
+ * @auteur  (Paul)
+ * @version (v.o1 - 13/05/2022)
+ */
+
 
 public abstract class Hero {
-    protected String name;
-    public int lifePoints;
-    public int manaPoints;
     protected int armor;
-    public int weaponDamage;
-    protected ArrayList<Potion> potions;
-    protected ArrayList<Food> lembas;
+    protected String name;
+    protected int lifePoints;
+    protected int weaponDamage;
+    protected List<Food> lembas;
+    protected List<Potion> potions;
 
-    public Hero() {
+    public int getArmor() {
+        return this.armor;
     }
 
-    public abstract void attack();
-
-    public abstract void defend();
-
-    public abstract void useConsumable(Consumable var1);
-
-    public void givePotion() {
-        Potion potion = new Potion();
-        this.potions.add(potion);
+    public String getName() {
+        return this.name;
     }
 
-    public void giveFood() {
-        Food food = new Food();
-        this.lembas.add(food);
+    public int getLifePoints() {
+        return this.lifePoints;
     }
-}
+
+    public int getWeaponDamage() {
+        return this.weaponDamage;
+    }
+
+    public List<Food> getLembas() {
+        return this.lembas;
+    }
+
+    public List<Potion> getPotions() {
+        return this.potions;
+    }
+
+
 

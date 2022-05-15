@@ -1,35 +1,31 @@
 package com.isep.test;
 
-import static org.junit.jupiter.api.Assertions.*;
-import com.isep.rpg.Mage;
+
+/**
+ * @auteur  (Paul)
+ * @version (v.o1 - 13/05/2022)
+ */
+
+
+import com.isep.rpg.*;
 import org.junit.jupiter.api.Test;
 
-
+import static org.junit.jupiter.api.Assertions.*;
 
 class MageTest {
-    MageTest() {
+    Enemy e = new BasicEnemy.Builder(10).setName("Mini Titan").setDamage(4).build();
+    Mage  mage= new Mage.Builder(10).setArmor(3).setManaCost(2).setManaPoints(10).setName("Healer").setWeaponDamage(4).build();
+
+
+    @Test
+    void attack() {
+        mage.attack(e);
+        assertEquals(8,mage.getManaPoints());
     }
 
     @Test
-    public void test() {
-        Mage mage = new Mage();
-
-        while(mage.lifePoints > 0) {
-            if (mage.manaPoints >= mage.manaConsomme) {
-                mage.attack();
-                System.out.println("Vous avez infligé " + mage.weaponDamage + " point(s) de dégât");
-                System.out.println("Il vous reste " + mage.manaPoints + " point(s) de mana");
-            } else {
-                System.out.println("Il n'y a plus de point de mana");
-            }
-
-            mage.defend();
-            if (mage.lifePoints > 0) {
-                System.out.println("Vous disposez de " + mage.lifePoints + " point(s) de vie");
-            } else {
-                System.out.println("Il ne vous reste plus de vie. \nVous avez perdu.");
-            }
-        }
-
+    void defend() {
+        mage.defend(e);
+        assertEquals(9, mage.getLifePoints());
     }
-}
+

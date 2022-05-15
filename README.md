@@ -77,7 +77,18 @@ Optimisation des différentes branches de la GameLogic avant implémentation
 
 
 13/05/22
-Finalisation GameLogic 99 %
+Continuité gameLogic 95 %
 > Same branches
+
+
+
+14/05/22
+GameLogic terminé 99 %
+> vérification & tests unitaires
+
+
+15/05/22
+Optimisation de chaque classes
+> écriture du commentaire sur chaque classe (cf UML diagram)
 
 

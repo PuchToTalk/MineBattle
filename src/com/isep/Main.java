@@ -10,21 +10,13 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 
-
-public class Main extends Application {
-    @Override
-    public void start(Stage primaryStage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("ControllerViews/views/MiniRPGLite.fxml"));
-        Scene scene = new Scene(root, 899,583);
-        primaryStage.setScene(scene);
-        primaryStage.setResizable(false);
-        primaryStage.show();
+public class Main {
+    public Main() {
     }
 
     public static void main(String[] args) {
-        launch(args);
+        Game game = new Game();
+        game.playGame();
     }
-
 }
-
-// On lance la session du jeu via la fonction
+// On lance la session du jeu via la fonction playgame de la classe Game
