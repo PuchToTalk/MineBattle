@@ -113,6 +113,59 @@ public class Game {
         }
 
 
+
+        private void loadHeroes(int mage, int healer, int hunter, int warrior) {
+            if (mage > 0) {
+                for (int i = 0; i < mage; i++) {
+                    heroes.add(
+                            new Mage.Builder(10)
+                                    .setName("Mage-" + (i + 1))
+                                    .setManaCost(1)
+                                    .setManaPoints(10)
+                                    .setArmor(3)
+                                    .setWeaponDamage(3)
+                                    .build()
+                    );
+                }
+            }
+            if (healer > 0) {
+                for (int i = 0; i < healer; i++) {
+                    heroes.add(
+                            new Healer.Builder(10)
+                                    .setName("Healer-" + (i + 1))
+                                    .setManaCost(1)
+                                    .setManaPoints(10)
+                                    .setArmor(3)
+                                    .setWeaponDamage(3)
+                                    .build()
+                    );
+                }
+            }
+            if (hunter > 0) {
+                for (int i = 0; i < hunter; i++) {
+                    heroes.add(
+                            new Hunter.Builder(10)
+                                    .setName("Hunter-" + (i + 1))
+                                    .setArrows(10).setArmor(3)
+                                    .setWeaponDamage(3)
+                                    .build()
+                    );
+                }
+            }
+            if (warrior > 0) {
+                for (int i = 0; i < warrior; i++) {
+                    heroes.add(
+                            new Warrior.Builder(10)
+                                    .setName("Warrior-" + (i + 1))
+                                    .setArmor(3)
+                                    .setWeaponDamage(3)
+                                    .build()
+                    );
+                }
+            }
+        }
+
+
         for (Hero hero : this.heroes) {
             hero.potions = new ArrayList();
 
@@ -134,6 +187,8 @@ public class Game {
             System.out.println("\n------------------------------------------------------------------\n");
             turnTime(2);
             Game.clearConsole();
+
+
         }
 
         this.generateCombat(this.heroes.size());
@@ -441,7 +496,7 @@ public class Game {
 
                     public String increaseArrows() {
                         if (getHeroByTurn() instanceof Hunter) {
-                            String res = getHeroByTurn().increaseArmor();
+                            String res = getHeroByTurn().increaseArrows();
                             nextHero();
                             return res;
                         }
