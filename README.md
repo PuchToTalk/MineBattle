@@ -21,9 +21,13 @@
 
 > b4 (30/04/22) : finition de la suite : choix rewards
 
-> b5 (06/05/22) : finition de l'histoire complète
+> b5 (06/05/22) : finition de l'histoire 95%
 
-> o1 (13/05/22) : optimisation du jeu (intéractions)
+> o1 (13/05/22) : finition de l'histoire 99 % + optimisations des classes heroes + enemies
+
+> o2 (14/05/22) : finition du jeu GameLogic + optimisations des récompenses + secondaires
+
+> o2 (15/05/22) : optimisation du jeu (intéractions)
 
 
 (...)
