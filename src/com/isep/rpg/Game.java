@@ -235,6 +235,11 @@ public class Game {
         }
         int nombreDeEnemy = this.enemies.size();
 
+
+        private void loadEnemies(int x){
+            enemies.add();
+        }
+
         while (nombreDeHerosVivant > 0 && nombreDeEnemy > 0) {
             for (int i = 0; i < nombreDeHerosVivant; i++) {
                 Hero hero = this.heroes.get(i);

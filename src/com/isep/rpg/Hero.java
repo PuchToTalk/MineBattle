@@ -41,4 +41,17 @@ public abstract class Hero {
     }
 
 
+    @Override
+    public String toString() {
+        return "Hero{" +
+                " Armure=" + armor +
+                ", Nom='" + name + '\'' +
+                ", HP=" + lifePoints +
+                ", Degats=" + weaponDamage +
+                '}';
+    }
+}
+
+
+
 
