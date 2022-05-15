@@ -35,6 +35,21 @@ public class Game {
 
     }
 
+    public boolean lose() {
+        System.out.println("Statut : " + " Héros est-il vivant ? " + isHeroesLeft() + " Ennemis est-il vivant ? " + isEnemiesLeft());
+        return !isHeroesLeft() && isEnemiesLeft();
+    }
+
+
+    public boolean win() {
+        if (!isEnemiesLeft() && isHeroesLeft()) {
+            playerTurn = 0;
+            enemyTurn = 0;
+            return true;
+        }
+        return false;
+    }
+
     public void playGame() {
         Scanner scanner = new Scanner(System.in);
         printSeperator(66);
@@ -381,26 +396,73 @@ public class Game {
                     System.out.println("Vous avez choisi d'augmenter votre armure de 1 point");
                     hero.armor += 1;
                     System.out.println(hero.armor);
+
+                    public String increaseArmor() {
+                        String res =getHeroByTurn().increaseArmor();
+                        nextHero();
+                        return res;
+
                 }
                 case 2 -> {
                     System.out.println("");
                     System.out.println("Vous avez choisi d'augmenter votre arme de 1 point");
+
+                    public String increaseWeaponDamage() {
+                        String res = getHeroByTurn().increaseWeaponDamage();
+                        nextHero();
+                        return res;
+                    }
+
                 }
                 case 3 -> {
                     System.out.println("");
-                    System.out.println("Vous avez décidé d'augmenté le nombre de potions de +1");
+                    System.out.println("Vous avez décidé d'augmenté l'efficacité des food & potion ");
+
+                    public String increaseFoodAndPotionEffectiveness() {
+                        String res = getHeroByTurn().increasePotionAndFoodEffectiveness();
+                        nextHero();
+                        return res;
+                    }
                 }
                 case 4 -> {
                     System.out.println("");
-                    System.out.println("Vous avez décidé d'augmenter le nombre de nourriture de +1");
+                    System.out.println("Vous avez décidé d'augmenter le nombre de food & potion");
+
+                    public String increasePotionAndFoodNumber() {
+                        String res = getHeroByTurn().increasePotionAndFoodNumber();
+                        nextHero();
+                        return res;
+                    }
+
                 }
                 case 5 -> {
                     System.out.println("");
                     System.out.println("Vous avez décidé d'augmenter la quantité de flèches de +1");
+
+                    public String increaseArrows() {
+                        if (getHeroByTurn() instanceof Hunter) {
+                            String res = getHeroByTurn().increaseArmor();
+                            nextHero();
+                            return res;
+                        }
+                        return "Navré, ceci est réservé à la classe Hunter";
+                    }
+
                 }
                 case 6 -> {
                     System.out.println("");
                     System.out.println("Vous avez décidé de diminuer le coût en mana de -1");
+
+                    public String decreaseManaCost() {
+                        if (getHeroByTurn() instanceof SpellCaster) {
+                            String res = getHeroByTurn().decraseManaCost();
+                            nextHero();
+                            return res;
+                        }
+                        return "Navré, ceci est réservé aux héros SpellCaster";
+                    }
+
+
                 }
             }
         }
@@ -414,24 +476,6 @@ public class Game {
             e.printStackTrace();
         }
 
-
-
-        @Override
-        public boolean lose() {
-            System.out.println("Statut : " + " Héros est-il vivant ? " + isHeroesLeft() + " Ennemis est-il vivant ? " + isEnemiesLeft());
-            return !isHeroesLeft() && isEnemiesLeft();
-        }
-
-
-        @Override
-        public boolean win() {
-            if (!isEnemiesLeft() && isHeroesLeft()) {
-                playerTurn = 0;
-                enemyTurn = 0;
-                return true;
-            }
-            return false;
-        }
 
 
         @Override
