@@ -95,4 +95,8 @@ Optimisation de chaque classes
 
 
 
-
+Optimisation choix de Récompenses
+> Simplification de la classe Game
+> Au lieu d'avoir texte imprimé, on les met dans des fonctions pour automatiser & simplifier l'appel de ces functions
+> ex : Réécriture pour les cas du switch lorsque l'user choisit sa récompense 1/2/3/4/5/6
+(function increaseWP, incresaseArmor, increaseEfficiency, increaseNumber, increaseArrows, decreaseManaCost
