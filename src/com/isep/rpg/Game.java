@@ -8,7 +8,7 @@ import java.util.*;
  * Simplficiation de la GameLogic
  *
  * @auteur(s)  (Paul)
- * @version (v.o2 - 16/05/2022)
+ * @version (v.o2 - 17/05/2022)
  */
 
 
@@ -50,6 +50,35 @@ public class Game {
         return false;
     }
 
+
+    public List<Hero> getHeroList() {
+        return this.heroes;
+
+
+        private Hero getHeroByTurn() {
+            return heroes.get(getIndex());
+        }
+
+        private boolean isHeroesLeft() {
+            int h = 0;
+            for (Hero hero : heroes) {
+                if (isLive(hero)) {
+                    h++;
+                }
+            }
+
+            System.out.println("Heros: " + h);
+
+            return h > 0;
+        }
+
+        private boolean isLive(Hero hero) {
+            return hero.getLifePoints() > 0;
+        }
+
+
+
+    }
     public void playGame() {
         Scanner scanner = new Scanner(System.in);
         printSeperator(66);

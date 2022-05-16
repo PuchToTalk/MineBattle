@@ -4,7 +4,8 @@ import java.util.List;
 
 /**
  * @auteur  (Paul)
- * @version (v.o1 - 16/05/2022)
+ * @version (v.o1 - 17/05/2022)
+ * Add le getArrows pour Hunters
  */
 
 
@@ -46,6 +47,15 @@ public abstract class Hero {
 
     public abstract void useConsumable(Consumable con);
 
+    public void addPotion(Potion p) {
+
+        potions.add(p);
+    }
+
+    public void addFood(Food f) {
+
+        lembas.add(f);
+    }
 
     @Override
     public String toString() {
@@ -56,6 +66,14 @@ public abstract class Hero {
                 ", Degats=" + weaponDamage +
                 '}';
     }
+
+
+    public int getArrows() {
+        return -1;
+    }
+
+
+
 }
 
 

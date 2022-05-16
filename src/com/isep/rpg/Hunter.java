@@ -7,35 +7,40 @@ import java.util.List;
 
 /**
  * @auteur  (Paul)
- * @version (v.o1 - 13/05/2022)
+ * @version (v.o1 - 17/05/2022)
+ * Augmentation flèches
+ * Plus de flèches en stock
+ * obtenir flèches lors de la récompense
  */
 
 
 public class Hunter extends Hero {
     private int arrows;
 
-    public Hunter(Builder b) {
-        this.name = b.name;
-        this.arrows = b.arrows;
-        this.armor = b.armor;
-        this.lifePoints = b.lifePoints;
-        this.weaponDamage = b.weaponDamage;
-        this.lembas = b.lembas;
-        this.potions = b.potions;
-        loadFood();
+    public Hunter() {
+        this.name;
+        this.arrows;
+        this.armor;
+        this.lifePoints;
+        this.weaponDamage;
+        this.lembas;
+        this.potions;
+
     }
 
     public String increaseArrows() {
         this.arrows += 10;
-        return "Augmenter les flèches";
+        return "Augmentation Fleches";
     }
 
     public int getManaCost() {
+
         return -1;
     }
 
 
     public int getManaPoints() {
+
         return -1;
     }
 
@@ -45,7 +50,7 @@ public class Hunter extends Hero {
             this.lifePoints -= e.getDamage();
             this.arrows--;
         } else {
-            System.out.println("Fini d'augmenter les flèches");
+            System.out.println("Plus de fleches");
         }
     }
 
@@ -59,12 +64,17 @@ public class Hunter extends Hero {
 
     @Override
     public void useConsumable(Consumable con) {
+
         this.lifePoints += con.consume();
     }
 
     public int getArrows() {
+
         return this.arrows;
     }
+
+
+
 
 
 }
