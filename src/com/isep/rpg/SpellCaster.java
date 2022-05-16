@@ -11,4 +11,21 @@ public abstract class SpellCaster extends Hero {
     protected int manaCost;
 
 
+    public int getManaCost() {
+
+        return this.manaCost;
+    }
+
+    public String decraseManaCost() {
+        if (manaCost > 1) {
+            this.manaCost -= 1;
+            return "Diminution du cout en Mana";
+        }
+        return "Cout en Mana ne peut pas être négatif";
+    }
+
+    public int getManaPoints() {
+
+        return this.manaPoints;
+    }
 }

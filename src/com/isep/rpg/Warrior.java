@@ -29,12 +29,12 @@ public class Warrior extends Hero {
         return -1;
     }
 
-    @Override
+
     public void attack(Enemy e) {
         this.lifePoints -= e.getDamage();
     }
 
-    @Override
+
     public void defend(Enemy e) {
         int extraEffect = this.armor - e.getDamage();
         if (extraEffect < 0) {
@@ -42,7 +42,6 @@ public class Warrior extends Hero {
         }
     }
 
-    @Override
     public void useConsumable(Consumable con) {
         this.lifePoints += con.consume();
     }
