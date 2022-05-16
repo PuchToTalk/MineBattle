@@ -25,14 +25,14 @@ public class Healer extends SpellCaster {
         loadPotion();
     }
 
-    @Override
+
     public void attack(Enemy e) {
         this.lifePoints -= e.getDamage();
         if (manaPoints > 0)
             this.manaPoints -= this.manaCost;
     }
 
-    @Override
+
     public void defend(Enemy e) {
         int extraEffect = this.armor - e.getDamage();
         if (extraEffect < 0) {
