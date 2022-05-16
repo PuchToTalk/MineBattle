@@ -5,6 +5,7 @@ package com.isep.rpg;
  * @auteur  (Paul)
  * @version (v.o2 - 17/05/2022)
  * Ajout builders comme cf Hunter & Warriors
+ * ajout gain en mp grâce potions mp
  */
 
 

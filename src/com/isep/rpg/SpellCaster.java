@@ -2,7 +2,9 @@ package com.isep.rpg;
 
 /**
  * @auteur  (Paul)
- * @version (v.o1 - 16/05/2022)
+ * @version (v.o2 - 17/05/2022)
+ * ajout modifs sur Healer & Mage
+ * Automatisation attributs & methods sur Mana & diminution du coût pour le choix Rewards
  */
 
 
