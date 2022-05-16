@@ -77,7 +77,7 @@ Optimisation des différentes branches de la GameLogic avant implémentation
 
 
 13/05/22
-Continuité gameLogic 95 %
+Continuité gameLogic 95 % + texte de remplacemenet cf tuto youtube
 > Same branches
 
 
@@ -95,8 +95,18 @@ Optimisation de chaque classes
 
 
 
-Optimisation choix de Récompenses
+> Optimisation choix de Récompenses
 > Simplification de la classe Game
 > Au lieu d'avoir texte imprimé, on les met dans des fonctions pour automatiser & simplifier l'appel de ces functions
 > ex : Réécriture pour les cas du switch lorsque l'user choisit sa récompense 1/2/3/4/5/6
 (function increaseWP, incresaseArmor, increaseEfficiency, increaseNumber, increaseArrows, decreaseManaCost
+
+
+16/05/22
+Ajout de Builders functions pour éviter répititions inutiles dans les println
+> Préparation de functions rapide pour les loadHeroes & lancement du fight (GenerateCombat)
+> Préparation de Builders pour setup les héros (WARRIORS + HUNTERS)
+
+
+Same idée à faire pour les ennemis après
+
