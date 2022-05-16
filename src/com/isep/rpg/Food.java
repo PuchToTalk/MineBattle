@@ -2,7 +2,7 @@ package com.isep.rpg;
 
 /**
  * @auteur  (Paul)
- * @version (v.o1 - 14/05/2022)
+ * @version (v.o1 - 16/05/2022)
  */
 
 

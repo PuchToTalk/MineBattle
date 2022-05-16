@@ -7,7 +7,7 @@ import java.util.List;
 
 /**
  * @auteur  (Paul)
- * @version (v.o1 - 13/05/2022)
+ * @version (v.o1 - 16/05/2022)
  */
 
 
@@ -39,13 +39,3 @@ public class Healer extends SpellCaster {
             this.lifePoints += extraEffect;
         }
     }
-
-    @Override
-    public void useConsumable(Consumable con) {
-        if (con instanceof Potion) {
-            this.manaPoints += con.consume();
-        } else if (con instanceof Food) {
-            this.lifePoints += con.consume();
-        }
-    }
-}

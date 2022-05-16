@@ -27,7 +27,7 @@ public class Hunter extends Hero {
 
     public String increaseArrows() {
         this.arrows += 10;
-        return "Arrows Increases Successfully";
+        return "Augmenter les flèches";
     }
 
     public int getManaCost() {
@@ -45,7 +45,7 @@ public class Hunter extends Hero {
             this.lifePoints -= e.getDamage();
             this.arrows--;
         } else {
-            System.out.println("Arrows Finished");
+            System.out.println("Fini d'augmenter les flèches");
         }
     }
 
