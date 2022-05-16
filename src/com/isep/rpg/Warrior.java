@@ -6,7 +6,8 @@ import java.util.List;
 
 /**
  * @auteur  (Paul)
- * @version (v.o1 - 16/05/2022)
+ * @version (v.o2 - 17/05/2022)
+ * acheminement des fonctions principaales du Warrior
  */
 
 public class Warrior extends Hero {
@@ -17,10 +18,7 @@ public class Warrior extends Hero {
         this.weaponDamage = b.weaponDamage;
         this.lembas = b.lembas;
         this.potions = b.potions;
-
         loadFood();
-
-
     }
 
     public int getManaCost() {
@@ -49,8 +47,7 @@ public class Warrior extends Hero {
         this.lifePoints += con.consume();
     }
 
-
-
+    /** Builders qui permettent appel aux paramétrages rapides + commandes en appel simple via nom donné (cf chap 7) **/
     public static class Builder {
         public int lifePoints;
         public int armor;
@@ -59,19 +56,21 @@ public class Warrior extends Hero {
         public List<Potion> potions;
         public List<Food> lembas;
 
-        public Builder(int lifePoints) {
-        this.lifePoints = lifePoints;
-        potions = new ArrayList<>();
-        lembas = new ArrayList<>();
-    }
 
-        public Builder setName(String n) {
-            this.name = n;
-            return this;
+
+        public Builder(int lifePoints) {
+            this.lifePoints = lifePoints;
+            potions = new ArrayList<>();
+            lembas = new ArrayList<>();
         }
 
         public Builder setArmor(int armor) {
             this.armor = armor;
+            return this;
+        }
+
+        public Builder setName(String n) {
+            this.name = n;
             return this;
         }
 
@@ -86,4 +85,3 @@ public class Warrior extends Hero {
         }
     }
 }
-

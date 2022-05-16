@@ -4,8 +4,9 @@ import java.util.List;
 
 /**
  * @auteur  (Paul)
- * @version (v.o1 - 17/05/2022)
+ * @version (v.o2 - 17/05/2022)
  * Add le getArrows pour Hunters
+ * add Builders
  */
 
 

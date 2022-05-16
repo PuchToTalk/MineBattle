@@ -9,6 +9,8 @@ import java.util.*;
  *
  * @auteur(s)  (Paul)
  * @version (v.o2 - 17/05/2022)
+ * Ajout fonction getHeroList, List des héros, index du héros, Boolean hero vivant, Nombre de héro qui reste dans la liste)
+ *
  */
 
 

@@ -13,19 +13,18 @@ import java.util.List;
  * obtenir flèches lors de la récompense
  */
 
-
 public class Hunter extends Hero {
     private int arrows;
 
-    public Hunter() {
-        this.name;
-        this.arrows;
-        this.armor;
-        this.lifePoints;
-        this.weaponDamage;
-        this.lembas;
-        this.potions;
-
+    public Hunter(Builder b) {
+        this.name = b.name;
+        this.arrows = b.arrows;
+        this.armor = b.armor;
+        this.lifePoints = b.lifePoints;
+        this.weaponDamage = b.weaponDamage;
+        this.lembas = b.lembas;
+        this.potions = b.potions;
+        loadFood();
     }
 
     public String increaseArrows() {
@@ -73,8 +72,53 @@ public class Hunter extends Hero {
         return this.arrows;
     }
 
+    /** Même principe que pour Hero & Warrior on set up des commandes rapides via les Builders cf chap 7 **/
+
+    public static class Builder {
+        public int arrows;
+        public String name;
+        public int lifePoints;
+        public int armor;
+        public int weaponDamage;
+        public List<Potion> potions;
+        public List<Food> lembas;
+
+        public Builder(int lifePoints) {
+            this.lifePoints = lifePoints;
+            potions = new ArrayList<>();
+            lembas = new ArrayList<>();
+        }
+
+        public Builder setArmor(int armor) {
+            this.armor = armor;
+            return this;
+        }
+
+        public void increaseArrow() {
+
+            this.arrows += 5;
+        }
 
 
+        public Builder setName(String n) {
+            this.name = n;
+            return this;
+        }
 
+        public Builder setArrows(int a) {
+            this.arrows = a;
+            return this;
+        }
+
+        public Builder setWeaponDamage(int wd) {
+            this.weaponDamage = wd;
+            return this;
+        }
+
+        public Hunter build() {
+
+            return new Hunter(this);
+        }
+    }
 
 }
