@@ -15,13 +15,13 @@ import java.util.*;
 
 
 
-public class Game {
+public class Game implements GameScenario {
     private ArrayList<Hero> heroes;
     private ArrayList<Enemy> enemies;
     private int playerTurn;
     private InputParser inputParser;
 
-    public Game() {
+    public Game {
     }
 
     public static void clearConsole() {
