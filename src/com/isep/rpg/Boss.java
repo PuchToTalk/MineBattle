@@ -1,17 +1,48 @@
 package com.isep.rpg;
 
 
-/**
- * @auteur  (Paul)
- * @version (v.o1 - 16/05/2022)
- */
+
+public class Boss extends Enemy
+{
+    public Boss(Builder b){
+        this.lifePoints = b.lifePoints;
+        this.name = b.name;
+        this.damage = b.damage;
+    }
+
+    /**
+     * @PS : Class Boss
+     * Cette classe dispose les attributs qu'elle a obtenu par héritage de sa classe mère (Enemy)
+     * idem attributs que BasicEnemy aussi
+     *
+     * @auteur(s)  (Paul)
+     * @version (v.o2 - 20/05/2022)
+     */
 
 
 
-public class Boss extends Enemy {
-    public Boss() {
-        this.lifePoints = 50;
-        this.name = "Titan originel";
-        this.weaponDamage = 5;
+    public static class Builder{
+
+        public int lifePoints;
+        public int damage;
+        public String name;
+
+        public Builder(int lp){
+            this.lifePoints = lp;
+        }
+
+        public Builder setName(String name){
+            this.name = name;
+            return this;
+        }
+
+        public Builder setDamage(int damage){
+            this.damage = damage;
+            return this;
+        }
+
+        public Boss build(){
+            return new Boss(this);
+        }
     }
 }
