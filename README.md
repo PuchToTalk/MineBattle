@@ -110,3 +110,19 @@ Ajout de Builders functions pour éviter répititions inutiles dans les println
 
 Same idée à faire pour les ennemis après
 
+20/05/22
+Builders sur partie Enemy + Basic enemy + Boss
+> Préparation de functions rapide pour setup les paramètres + stats
+
+
+22/05/22
+Optimisation (5) des constructeurs POST choix awards
+> Enesemble des parties Héros
+> Ensemble des parties Enemy
+
+
+23/05/22
+Optimisation (6) des constructeurs POST choix awards
+> Enesemble des parties secondaires (Food & Potion & spécifications Choix Awards)
+
+
