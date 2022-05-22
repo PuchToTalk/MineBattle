@@ -15,7 +15,8 @@ public class BasicEnemy extends Enemy
      * idem attributs que Boss aussi
      *
      * @auteur(s)  (Paul)
-     * @version (v.o2 - 20/05/2022)
+     * @version (v.o2 - 22/05/2022)
+     * simplification des constructeurs avec setup des infos sur BasicEnemy
      */
 
 

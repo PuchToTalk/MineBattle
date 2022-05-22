@@ -7,9 +7,8 @@ import java.util.List;
 
 /**
  * @auteur  (Paul)
- * @version (v.o2 - 17/05/2022)
- * Ajout set up Builders idem warrior mage hunters
- * ajout useConsumable car potion => donne Mp
+ * @version (v.o3 - 22/05/2022)
+ * Builder ManaCost pour les setups du perso
  */
 
 public class Healer extends SpellCaster {

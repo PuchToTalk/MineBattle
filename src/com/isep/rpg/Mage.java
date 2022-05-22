@@ -3,7 +3,7 @@ package com.isep.rpg;
 
 /**
  * @auteur  (Paul)
- * @version (v.o2 - 17/05/2022)
+ * @version (v.o1 - 17/05/2022)
  * Ajout builders comme cf Hunter & Warriors
  * ajout gain en mp grâce potions mp
  */
@@ -50,6 +50,13 @@ public class Mage extends SpellCaster {
             this.lifePoints += con.consume();
         }
     }
+
+    /**
+     * @auteur  (Paul)
+     * @version (v.o2 - 22/05/2022)
+
+     * effet après choix des récompenses
+     */
 
 
     public static class Builder {

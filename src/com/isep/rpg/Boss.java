@@ -16,7 +16,8 @@ public class Boss extends Enemy
      * idem attributs que BasicEnemy aussi
      *
      * @auteur(s)  (Paul)
-     * @version (v.o2 - 20/05/2022)
+     * @version (v.o2 - 22/05/2022)
+     * simplification des constructeurs setup Boss
      */
 
 

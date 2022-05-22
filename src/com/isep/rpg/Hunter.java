@@ -7,10 +7,11 @@ import java.util.List;
 
 /**
  * @auteur  (Paul)
- * @version (v.o1 - 17/05/2022)
+ * @version (v.o2 - 22/05/2022)
  * Augmentation flèches
  * Plus de flèches en stock
- * obtenir flèches lors de la récompense
+
+ * Choix de récompenses : augmenter nbre de flèches
  */
 
 public class Hunter extends Hero {
@@ -93,6 +94,10 @@ public class Hunter extends Hero {
             this.armor = armor;
             return this;
         }
+
+
+        /** En lien avec choix des récompenses **/
+
 
         public void increaseArrow() {
 
