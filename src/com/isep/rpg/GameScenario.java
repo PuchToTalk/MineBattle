@@ -27,7 +27,7 @@ public interface GameScenario {
 
         /**
          * @auteur  (Paul)
-         * @version (v.o2 - 22/05/2022)
+         * @version (v.o3 - 23/05/2022)
          * Pour la partie des récompenses
          */
 

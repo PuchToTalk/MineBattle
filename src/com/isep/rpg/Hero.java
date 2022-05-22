@@ -123,18 +123,22 @@ public abstract class Hero {
      * Affichage du Héro
      */
 
-
-    public abstract int getManaPoints();
-
-    public abstract int getManaCost();
-
-
-
+    //commandes de base
     public abstract void attack(Enemy e);
 
     public abstract void defend(Enemy e);
 
     public abstract void useConsumable(Consumable con);
+
+
+
+
+    // infos sur stats (si classe Spellcaster et Mana non négatif)
+    public abstract int getManaPoints();
+
+    public abstract int getManaCost();
+
+
 
     @Override
     public String toString() {

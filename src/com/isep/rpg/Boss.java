@@ -32,6 +32,9 @@ public class Boss extends Enemy
             this.lifePoints = lp;
         }
 
+
+        /** Construit Nom + Dégât **/
+
         public Builder setName(String name){
             this.name = name;
             return this;

@@ -31,9 +31,12 @@ public abstract class Enemy
     }
 
     /**
-     * Fonction qui provoque des dégâts au HERO
-     * @param h = on cible le héro qui nous a attaqué
-     * permet paramétrer l'affichage
+     * @auteur(s)  (Paul)
+     * @version (v.o2 - 23/05/2022)
+     *
+     * Fonction reçoit dégâts du héro "damage()"
+     * @param h = où h cible le héro qui nous a attaqué précisément
+     * Affichage stats finaux
      */
 
 

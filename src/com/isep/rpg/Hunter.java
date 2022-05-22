@@ -8,10 +8,6 @@ import java.util.List;
 /**
  * @auteur  (Paul)
  * @version (v.o2 - 22/05/2022)
- * Augmentation flèches
- * Plus de flèches en stock
-
- * Choix de récompenses : augmenter nbre de flèches
  */
 
 public class Hunter extends Hero {
@@ -28,21 +24,10 @@ public class Hunter extends Hero {
         loadFood();
     }
 
-    public String increaseArrows() {
-        this.arrows += 10;
-        return "Augmentation Fleches";
-    }
-
-    public int getManaCost() {
-
-        return -1;
-    }
 
 
-    public int getManaPoints() {
-
-        return -1;
-    }
+   /** Respecter la condition "diminuer le nbre de flèche lors attaque"
+    * Puis incapacité d'attaquer & renvoie msg erreur si plus de flèches **/
 
     @Override
     public void attack(Enemy e) {
@@ -68,12 +53,43 @@ public class Hunter extends Hero {
         this.lifePoints += con.consume();
     }
 
-    public int getArrows() {
 
-        return this.arrows;
+
+    /** Fonctions propres à la classe "Hunter" lorsque choix de recompenses correspondant **/
+
+    public String increaseArrows() {
+        this.arrows += 10;
+        return "Augmentation Fleches"; // renvoie msg pour montrer que bien réalisé, pour savoir en cas d'erreur
     }
 
+
+    public int getArrows() {
+
+        return this.arrows; // infos sur qtité flèches si existe
+    }
+
+
+    /**
+     * @auteur  (Paul)
+     * @version (v.o3 - 23/05/2022)
+     * Définir comme sur Warrior par défaut, mettre à valeur négatif (-1) pour la barre en Mana
+     * Pour éviter qu'il rentre dans les conditions fixées lorsque x > 1
+     */
+
+    public int getManaCost() {
+        return -1;
+    }
+
+    public int getManaPoints() {
+        return -1;
+    }
+
+
     /** Même principe que pour Hero & Warrior on set up des commandes rapides via les Builders cf chap 7 **/
+
+    /**  Optimisation des Constructeurs : Armure + Dégâts + Nom + stats de départ
+     **/
+
 
     public static class Builder {
         public int arrows;
@@ -96,28 +112,30 @@ public class Hunter extends Hero {
         }
 
 
-        /** En lien avec choix des récompenses **/
-
-
-        public void increaseArrow() {
-
-            this.arrows += 5;
-        }
-
 
         public Builder setName(String n) {
             this.name = n;
             return this;
         }
 
+
+        public Builder setWeaponDamage(int wd) {
+            this.weaponDamage = wd;
+            return this;
+        }
+
+
+        /** Propre à la classe
+         * & Dépend avec choix des récompenses **/
+
         public Builder setArrows(int a) {
             this.arrows = a;
             return this;
         }
 
-        public Builder setWeaponDamage(int wd) {
-            this.weaponDamage = wd;
-            return this;
+        public void increaseArrow() {
+
+            this.arrows += 5;
         }
 
         public Hunter build() {

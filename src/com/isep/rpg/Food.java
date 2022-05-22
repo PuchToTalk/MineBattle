@@ -17,10 +17,16 @@ public class Food implements Consumable
         this.lifePoints = b.lifePoints;
     }
 
+
+    /** Si choix de récompenses correspondant, ajout de 1 HP de soin en + au héro **/
+
     public void increaseEffectiveness(){
 
         this.lifePoints += 1;
     }
+
+
+
 
     @Override
     public int consume(){

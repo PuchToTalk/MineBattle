@@ -30,6 +30,9 @@ public class BasicEnemy extends Enemy
             this.lifePoints = lp;
         }
 
+
+        /** Construit Nom + Dégât **/
+
         public Builder setName(String name){
             this.name = name;
             return this;

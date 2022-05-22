@@ -7,8 +7,8 @@ import java.util.List;
 
 /**
  * @auteur  (Paul)
- * @version (v.o3 - 22/05/2022)
- * Builder ManaCost pour les setups du perso
+ * @version (v.o2 - 22/05/2022)
+ * Attaques de base
  */
 
 public class Healer extends SpellCaster {
@@ -47,6 +47,19 @@ public class Healer extends SpellCaster {
         }
     }
 
+
+    /**
+     * @auteur  (Paul)
+     * @version (v.o3 - 23/05/2022)
+
+    Optimisation des Constructeurs : Armure + Dégâts + Nom + [...]
+
+     *    [...] + Particularité des SpellCasters (fonctions setup Mana & Coût des sorts en Mana)
+     *
+     **/
+
+
+
     public static class Builder {
         public int manaCost;
         public int manaPoints;
@@ -68,25 +81,32 @@ public class Healer extends SpellCaster {
             return this;
         }
 
-        public Builder setManaPoints(int mp) {
-            this.manaPoints = mp;
+
+        public Builder setWeaponDamage(int wd) {
+            this.weaponDamage = wd;
             return this;
         }
+
 
         public Builder setName(String n) {
             this.name = n;
             return this;
         }
 
+
+        /** Propre aux SpellCasters (setup ManaPoints, Coût Mana) **/
+
+        public Builder setManaPoints(int mp) {
+            this.manaPoints = mp;
+            return this;
+        }
+
+
         public Builder setManaCost(int mc) {
             this.manaCost = mc;
             return this;
         }
 
-        public Builder setWeaponDamage(int wd) {
-            this.weaponDamage = wd;
-            return this;
-        }
 
         public Healer build() {
             return new Healer(this);

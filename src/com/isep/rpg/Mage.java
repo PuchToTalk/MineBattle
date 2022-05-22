@@ -53,10 +53,13 @@ public class Mage extends SpellCaster {
 
     /**
      * @auteur  (Paul)
-     * @version (v.o2 - 22/05/2022)
+     * @version (v.o3 - 23/05/2022)
 
-     * effet après choix des récompenses
-     */
+       Optimisation des Constructeurs : Armure + Dégâts + Nom + [...]
+
+     *    [...] + Particularité des SpellCasters (fonctions setup Mana & Coût des sorts en Mana)
+     *
+     **/
 
 
     public static class Builder {
@@ -89,6 +92,8 @@ public class Mage extends SpellCaster {
             this.name = n;
             return this;
         }
+
+        /** Fonctions Propres aux SpellCasters (fonctions setup Mana & Coût des sorts en Mana) **/
 
         public Builder setManaPoints(int mp) {
             this.manaPoints = mp;
