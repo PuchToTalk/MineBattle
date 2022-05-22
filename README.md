@@ -27,7 +27,7 @@
 
 > o2 (14/05/22) : finition du jeu GameLogic + optimisations des récompenses + secondaires
 
-> o2 (15/05/22) : optimisation du jeu (intéractions)
+> o2 (16/05/22) : optimisation du jeu (intéractions)
 
 
 (...)
