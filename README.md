@@ -29,6 +29,7 @@
 
 > o2 (16/05/22) : optimisation du jeu (intéractions)
 
+> o3 (22/05/22) : optimisation POST choix awards (Builders + Raccourcir code)
 
 (...)
 
