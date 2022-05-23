@@ -16,7 +16,6 @@ public class Main {
 
     public static void main(String[] args) {
         Game game = new Game();
-        game.playGame();
-    }
+
 }
-// On lance la session du jeu via la fonction playgame de la classe Game
+// Nouveau main à lier avec la future interface

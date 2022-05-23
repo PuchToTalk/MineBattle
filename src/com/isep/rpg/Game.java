@@ -1,11 +1,10 @@
 package com.isep.rpg;
+
 import com.isep.utils.InputParser;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
-
-import java.util.*;
 
 /**
  * @PS : Changements apportés :
@@ -19,7 +18,7 @@ import java.util.*;
 
 
 
-public class Game implements GameScenario {
+public class Game implements InputParser {
     private List<Hero> heroes;
     private List<Enemy> enemies;
     private int totalPlayers;
