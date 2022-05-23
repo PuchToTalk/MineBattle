@@ -405,5 +405,63 @@ public class Game implements GameScenario {
 
 
 
+    /**
+     * @auteur(s)  (Paul)
+     * @version (v.o3 - 24/05/2022)
+     * Amélioration après choix de récompenses
+     * Simulation des 6 bonus
+     * **/
+
+
+    @Override
+    public String increaseArmor() {
+        String res =getHeroByTurn().increaseArmor();
+        nextHero();
+        return res;
+    }
+
+    @Override
+    public String increaseWeaponDamage() {
+        String res = getHeroByTurn().increaseWeaponDamage();
+        nextHero();
+        return res;
+    }
+
+    @Override
+    public String increaseFoodAndPotionEffectiveness() {
+        String res = getHeroByTurn().increasePotionAndFoodEffectiveness();
+        nextHero();
+        return res;
+    }
+
+    @Override
+    public String increasePotionAndFoodNumber() {
+        String res = getHeroByTurn().increasePotionAndFoodNumber();
+        nextHero();
+        return res;
+    }
+
+    @Override
+    public String increaseArrows() {
+        if (getHeroByTurn() instanceof Hunter) {
+            String res = getHeroByTurn().increaseArmor();
+            nextHero();
+            return res;
+        }
+        return "Navré, ceci est réservé à la classe Hunter";
+    }
+
+    @Override
+    public String decreaseManaCost() {
+        if (getHeroByTurn() instanceof SpellCaster) {
+            String res = getHeroByTurn().decraseManaCost();
+            nextHero();
+            return res;
+        }
+        return "Navré, ceci est réservé aux héros SpellCaster";
+    }
+
+
+
 
 }
