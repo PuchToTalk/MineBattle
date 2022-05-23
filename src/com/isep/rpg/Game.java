@@ -1,6 +1,10 @@
 package com.isep.rpg;
 import com.isep.utils.InputParser;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
+
 import java.util.*;
 
 /**
@@ -12,7 +16,6 @@ import java.util.*;
  * Apport fonctions
  * Lose / win / attack / defend / ConsumeFood / ConsumePotion
 **/
-
 
 
 
@@ -31,8 +34,8 @@ public class Game implements GameScenario {
         enemies = new ArrayList<>();
         playerTurn = random.nextInt(x);
         enemyTurn = random.nextInt(x);
-        loadHeroes(mage, healer, hunter, warrior);
-        loadEnemies(totalPlayers);
+        loadHeroes(mage, healer, hunter, warrior); // Les 4 classes de héros
+        loadEnemies(totalPlayers); // = le nbre de héro choisi
     }
 
     /** Pour le RPG console text-based **/
@@ -221,20 +224,7 @@ public class Game implements GameScenario {
  * **/
 
 
-    @Override
-
-
-            System.out.println("\n------------------------------------------------------------------\n");
-            System.out.println("Nom du héro : " + hero.name);
-            System.out.println(hero.getClass());
-            System.out.println("Nombre de HP : " + hero.lifePoints);
-            System.out.println("Quantité de potions : " + hero.potions.size());
-            System.out.println("Quantité de nourritures : " + hero.lembas.size());
-            System.out.println("\n------------------------------------------------------------------\n");
-            turnTime(2);
-            Game.clearConsole();
-
-
+    // chargement selon nombre de héro choisi pour chaque classe
     private void loadHeroes(int mage, int healer, int hunter, int warrior) {
         if (mage > 0) {
             for (int i = 0; i < mage; i++) {
@@ -285,23 +275,44 @@ public class Game implements GameScenario {
             }
         }
     }
-
-
+    // chargement selon nombre de ennemi en fct du nbre de héros
+        private void loadEnemies(int x) {
+             enemies.add(
+                  new Boss.Builder(15)
+                        .setName("Ender Dragon")
+                        .setDamage(2)
+                        .build()
+         );
+         x--;
+         if (x > 0) {
+               for (int i = 0; i < x; i++) {
+                   enemies.add(
+                           new BasicEnemy.Builder(10)
+                                   .setName("Zombie-" + (i + 1))
+                                   .setDamage(1)
+                                  .build()
+                   );
+               }
+          }
         }
 
-        this.generateCombat(this.heroes.size());
 
 
-        //this.win();
-        //
+
+    /**
+     * @auteur(s)  (Paul)
+     * @version (v.o2 - 23/05/2022)
+     * Chargement nveau combat : simulation
+     * (à continuer)
+     * **/
+
+
+    public String newCombat() {
+        enemies.clear();
+        loadEnemies(totalPlayers);
+        enemyTurn = getEnemyTurn();
+        return "Chargement du combat";
     }
-
-    public void generateCombat(int nombreDeHerosVivant) {
-        this.enemies = new ArrayList();
-        Random random = new Random();
-        int combatAleatoire = random.nextInt(10);
-        BasicEnemy enemy;
-
         // Condition pour apparition d'un BOSS (1/10 de proba)
         if (combatAleatoire == 0) {
             System.out.println("\n------------------------------------------------------------------\n");
@@ -323,9 +334,18 @@ public class Game implements GameScenario {
             }
         }
 
-        // on get l'iterator à partir de la liste enemies
 
-        // tant qu'il existe un élément contenu dans la liste, on le fait apparaître
+            System.out.println("\n------------------------------------------------------------------\n");
+            System.out.println("Nom du héro : " + hero.name);
+            System.out.println(hero.getClass());
+            System.out.println("Nombre de HP : " + hero.lifePoints);
+            System.out.println("Quantité de potions : " + hero.potions.size());
+            System.out.println("Quantité de nourritures : " + hero.lembas.size());
+            System.out.println("\n------------------------------------------------------------------\n");
+    turnTime(2);
+            Game.clearConsole();
+
+
 
         for (Enemy enemy1 : this.enemies) {
             System.out.println("Un " + enemy1.name + " apparaît");
