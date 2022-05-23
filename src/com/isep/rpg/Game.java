@@ -216,32 +216,14 @@ public class Game implements GameScenario {
 /**
  * @auteur(s)  (Paul)
  * @version (v.o2 - 22/05/2022)
- * Paramétrage stats & chargement des données & rgèles connues (GameLogic 1)
- * A continuer avec Chargement héro, puis choix récompenses**/
+ * Paramétrage stats & chargement des données & règles connues : OK
+ * Ajout de loading heroes & enemies
+ * **/
 
 
     @Override
-    public String newCombat() {
-        enemies.clear();
-        loadEnemies(totalPlayers);
-        enemyTurn = getEnemyTurn();
-        return "Chargement du combat";
-    }
 
 
-
-        for (Hero hero : this.heroes) {
-            hero.potions = new ArrayList();
-
-            for (k = 0; k < 5; ++k) {
-                hero.givePotion();
-            }
-
-            hero.lembas = new ArrayList();
-
-            for (k = 0; k < 10; ++k) {
-                hero.giveFood();
-            }
             System.out.println("\n------------------------------------------------------------------\n");
             System.out.println("Nom du héro : " + hero.name);
             System.out.println(hero.getClass());
@@ -251,6 +233,58 @@ public class Game implements GameScenario {
             System.out.println("\n------------------------------------------------------------------\n");
             turnTime(2);
             Game.clearConsole();
+
+
+    private void loadHeroes(int mage, int healer, int hunter, int warrior) {
+        if (mage > 0) {
+            for (int i = 0; i < mage; i++) {
+                heroes.add(
+                        new Mage.Builder(10)
+                                .setName("Mage-" + (i + 1))
+                                .setManaCost(1)
+                                .setManaPoints(10)
+                                .setArmor(3)
+                                .setWeaponDamage(3)
+                                .build()
+                );
+            }
+        }
+        if (healer > 0) {
+            for (int i = 0; i < healer; i++) {
+                heroes.add(
+                        new Healer.Builder(10)
+                                .setName("Healer-" + (i + 1))
+                                .setManaCost(1)
+                                .setManaPoints(10)
+                                .setArmor(3)
+                                .setWeaponDamage(3)
+                                .build()
+                );
+            }
+        }
+        if (hunter > 0) {
+            for (int i = 0; i < hunter; i++) {
+                heroes.add(
+                        new Hunter.Builder(10)
+                                .setName("Hunter-" + (i + 1))
+                                .setArrows(10).setArmor(3)
+                                .setWeaponDamage(3)
+                                .build()
+                );
+            }
+        }
+        if (warrior > 0) {
+            for (int i = 0; i < warrior; i++) {
+                heroes.add(
+                        new Warrior.Builder(10)
+                                .setName("Warrior-" + (i + 1))
+                                .setArmor(3)
+                                .setWeaponDamage(3)
+                                .build()
+                );
+            }
+        }
+    }
 
 
         }
