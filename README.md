@@ -31,7 +31,10 @@
 
 > o3 (22/05/22) : optimisation POST choix awards (Builders + Raccourcir code)
 
+> ok (27/05/22) : GameLogic bon, Fonctions bien optimisées, Tests à vérif
+
 (...)
 
-> w1 : (in progress) Faire l'interface
+> w1 :  Faire l'interface (boutons, fenêtres, Vbox) sur SceneBuilders
+> w2 (in progress) : puis EventListener / EventHandlers sur GameController
 
