@@ -125,4 +125,6 @@ Optimisation (5) des constructeurs POST choix awards
 Optimisation (6) des constructeurs POST choix awards
 > Enesemble des parties secondaires (Food & Potion & spécifications Choix Awards)
 
+24/05/22
+(v.ok) Validation des tests unitaires
 
