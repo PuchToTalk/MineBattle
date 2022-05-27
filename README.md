@@ -126,3 +126,14 @@ Optimisation (6) des constructeurs POST choix awards
 > Enesemble des parties secondaires (Food & Potion & spécifications Choix Awards)
 
 
+24/05/22
+Fonction InputParser à vérif
+> dernières modifs pour la GameLogic
+
+
+25/05/22
+Début Interface
+> fenêtre
+> boutons
+> modélisation interface grâce Scene Builders (fichier xml en cours)
+> voir croquis de mes attentes
