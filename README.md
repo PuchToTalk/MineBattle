@@ -35,6 +35,7 @@
 
 (...)
 
-> w1 :  Faire l'interface (boutons, fenêtres, Vbox) sur SceneBuilders
+> w1 (24/05/22) : Faire l'interface (boutons, fenêtres, Vbox) sur SceneBuilders
+
 > w2 (in progress) : puis EventListener / EventHandlers sur GameController
 
