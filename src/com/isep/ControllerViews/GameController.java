@@ -37,7 +37,7 @@ public class GameController implements Initializable {
 
 
 
- // 1ere étape : initialisation fzit appel à l'appairtion des boutons
+ // 1ere étape : initialisation fait appel à l'apparition des boutons
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         setGame();

@@ -1,19 +1,18 @@
 package com.isep.test;
+import com.isep.rpg.*;
 
+import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
  * @auteur  (Paul)
- * @version (v.o1 - 13/05/2022)
+ * @version (v.ok - 27/05/2022)
  */
 
-import com.isep.rpg.*;
-import org.junit.jupiter.api.Test;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 class HunterTest {
-    Enemy e = new Boss.Builder(10).setName("Mini Titan").setDamage(5).build();
-    Hunter hunter = new Hunter.Builder(10).setArmor(3).setArrows(10).setName("Healer").setWeaponDamage(4).build();
+    Enemy e = new Boss.Builder(10).setName("Squelette").setDamage(5).build();
+    Hunter hunter = new Hunter.Builder(10).setArmor(3).setArrows(10).setName("Hunter").setWeaponDamage(4).build();
 
     @org.junit.jupiter.api.Test
     void attack() {
@@ -27,3 +26,16 @@ class HunterTest {
         assertEquals(hunter.getLifePoints(), 8);
     }
 
+    @org.junit.jupiter.api.Test
+    void useConsumable() {
+        hunter.useConsumable(new Food.Builder(5).build());
+        assertEquals(hunter.getLifePoints(), 15);
+    }
+
+
+    @org.junit.jupiter.api.Test
+    void increaseArrmor(){
+        hunter.increaseArmor();
+        assertEquals(hunter.getArmor(),4);
+    }
+}

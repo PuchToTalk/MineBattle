@@ -3,7 +3,7 @@ package com.isep.test;
 
 /**
  * @auteur  (Paul)
- * @version (v.o1 - 13/05/2022)
+ * @version (v.ok - 27/05/2022)
  */
 
 
@@ -13,7 +13,7 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 class MageTest {
-    Enemy e = new BasicEnemy.Builder(10).setName("Mini Titan").setDamage(4).build();
+    Enemy e = new BasicEnemy.Builder(10).setName("Ghast").setDamage(4).build();
     Mage  mage= new Mage.Builder(10).setArmor(3).setManaCost(2).setManaPoints(10).setName("Healer").setWeaponDamage(4).build();
 
 
