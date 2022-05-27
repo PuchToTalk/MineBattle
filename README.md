@@ -29,11 +29,11 @@
 
 > o2 (16/05/22) : optimisation du jeu (intéractions)
 
-> o3 (22/05/22) : optimisation POST choix awards (Builders + Raccourcir code)
-
-> ok (27/05/22) : GameLogic bon, Fonctions bien optimisées, Tests à vérif
+> o3 à o6 (22/05/22) : optimisation POST choix awards (Builders + Raccourcir code)
 
 (...)
+
+> ok (27/05/22) : GameLogic bon, Fonctions bien optimisées, Tests à vérif
 
 > w1 (24/05/22) : Faire l'interface (boutons, fenêtres, Vbox) sur SceneBuilders
 
