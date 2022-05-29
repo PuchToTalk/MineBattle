@@ -37,5 +37,11 @@
 
 > w1 (24/05/22) : Faire l'interface (boutons, fenêtres, Vbox) sur SceneBuilders
 
-> w2 (in progress) : puis EventListener / EventHandlers sur GameController
+> w2 (28/05/22) : validation interface
+
+> w3 à 7 (29/05/22) : MAJ cases pour camps hero/enemy, boutons dynamiques, boutons choix recompenses / attaques, ecran chargement
+
+> vfinal (29/05/22) : jeu fonctionnel comporte bug, tests mauvais,
+
+> vfinal vraiment fini (29/05/22) : jeu fonctionnel avec corrections des tests, et corrections bugs
 
