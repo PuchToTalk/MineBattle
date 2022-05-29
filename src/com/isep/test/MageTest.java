@@ -14,7 +14,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class MageTest {
     Enemy e = new BasicEnemy.Builder(10).setName("Ghast").setDamage(4).build();
-    Mage  mage= new Mage.Builder(10).setArmor(3).setManaCost(2).setManaPoints(10).setName("Healer").setWeaponDamage(4).build();
+    Mage mage= new Mage.Builder(10).setArmor(3).setManaCost(2).setManaPoints(10).setName("Mage").setWeaponDamage(4).build();
 
 
     @Test
@@ -29,3 +29,11 @@ class MageTest {
         assertEquals(9, mage.getLifePoints());
     }
 
+    @Test
+    void useConsumable() {
+        mage.useConsumable(new Potion.Builder(2).build());
+        assertEquals(12, mage.getManaPoints());
+        mage.useConsumable(new Food.Builder(4).build());
+        assertEquals(14, mage.getLifePoints());
+    }
+}

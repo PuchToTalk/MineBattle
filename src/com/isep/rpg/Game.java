@@ -199,7 +199,7 @@ public class Game implements InputParser {
             return "Food a été utilisé";
         } else {
             changeTurn();
-            return consumePotion();
+            return consumeFood();
         }
     }
 
@@ -363,44 +363,6 @@ public class Game implements InputParser {
         }
     }
 
-
-    @Override
-    public String consumeFood() {
-        if (isLive(getHeroByTurn())) {
-            List<Food> foods = getHeroByTurn().getLembas();
-            if (foods.size() <= 0) {
-                return "Plus de Food disponible";
-            }
-            getHeroByTurn().useConsumable(foods.get(0));
-            foods.remove(0);
-            changeTurn();
-            return "Food a été utilisé";
-        } else {
-            changeTurn();
-            return consumePotion();
-        }
-    }
-
-
-    @Override
-    public String consumePotion() {
-        if (isLive(getHeroByTurn())) {
-            List<Potion> potions = getHeroByTurn().getPotions();
-            if (getHeroByTurn() instanceof SpellCaster) {
-                if (potions.size() <= 0) {
-                    return "Plus de Potion disponible";
-                }
-                getHeroByTurn().useConsumable(potions.get(0));
-                potions.remove(0);
-                changeTurn();
-                return "Potion a été utilisé";
-            }
-            return "Navré, ceci est réservé aux héros Spell-Caster";
-        } else {
-            changeTurn();
-            return consumePotion();
-        }
-    }
 
 
 

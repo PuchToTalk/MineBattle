@@ -116,11 +116,6 @@ public VBox heroContainer; //Attribut contenant données du Hero (fenêtre gauch
 
         messageText.setText(txt);
     }
-}
-
-
-
-
 
 
 
@@ -525,6 +520,3 @@ public VBox heroContainer; //Attribut contenant données du Hero (fenêtre gauch
 
 
 
-
-
-}

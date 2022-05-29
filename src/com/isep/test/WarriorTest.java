@@ -16,8 +16,8 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 class WarriorTest {
-    Enemy e = new Boss.Builder(10).setName("Zombie Pigmen").setDamage(6).build();
-    Warrior warrior = new Warrior.Builder(10).setArmor(3).setName("Healer").setWeaponDamage(4).build();
+    Enemy e = new Boss.Builder(10).setName("Herobrine").setDamage(6).build();
+    Warrior warrior = new Warrior.Builder(10).setArmor(3).setName("Warrior").setWeaponDamage(4).build();
 
     @Test
     void attack() {
@@ -30,3 +30,10 @@ class WarriorTest {
         warrior.defend(e);
         assertEquals(7, warrior.getLifePoints());
     }
+
+    @Test
+    void useConsumable() {
+        warrior.useConsumable(new Food.Builder(2).build());
+        assertEquals(warrior.getLifePoints(), 12);
+    }
+}
