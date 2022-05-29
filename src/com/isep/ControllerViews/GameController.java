@@ -313,8 +313,6 @@ public VBox heroContainer; //Attribut contenant données du Hero (fenêtre gauch
                 heroContainer.getChildren().add(getHeroInformationPane(hero));
             }
         }
-
-
     }
 
 
