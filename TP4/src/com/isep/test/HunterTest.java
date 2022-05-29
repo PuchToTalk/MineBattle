@@ -1,36 +1,41 @@
 package com.isep.test;
+import com.isep.rpg.*;
 
 import static org.junit.jupiter.api.Assertions.*;
-import com.isep.rpg.Hunter;
-import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
-
+/**
+ * @auteur  (Paul)
+ * @version (v.ok - 27/05/2022)
+ */
 
 
 class HunterTest {
-    HunterTest() {
+    Enemy e = new Boss.Builder(10).setName("Squelette").setDamage(5).build();
+    Hunter hunter = new Hunter.Builder(10).setArmor(3).setArrows(10).setName("Hunter").setWeaponDamage(4).build();
+
+    @org.junit.jupiter.api.Test
+    void attack() {
+        hunter.attack(e);
+        assertEquals(hunter.getLifePoints(), 5);
     }
 
-    @Test
-    public void test() {
-        Hunter hunter = new Hunter();
+    @org.junit.jupiter.api.Test
+    void defend() {
+        hunter.defend(e);
+        assertEquals(hunter.getLifePoints(), 8);
+    }
 
-        while(hunter.lifePoints > 0) {
-            if (hunter.arrows > 0) {
-                hunter.attack();
-                System.out.println("Vous avez infligé " + hunter.weaponDamage + " point(s) de dégât");
-                System.out.println("Il vous reste " + hunter.arrows + " flèches");
-            } else {
-                System.out.println("Il ne vous reste plus aucune flèche");
-            }
+    @org.junit.jupiter.api.Test
+    void useConsumable() {
+        hunter.useConsumable(new Food.Builder(5).build());
+        assertEquals(hunter.getLifePoints(), 15);
+    }
 
-            hunter.defend();
-            if (hunter.lifePoints > 0) {
-                System.out.println("Vous disposez de " + hunter.lifePoints + " point(s) de vie");
-            } else {
-                System.out.println("Il ne vous reste plus de vie. \nVous avez perdu.");
-            }
-        }
 
+    @org.junit.jupiter.api.Test
+    void increaseArrmor(){
+        hunter.increaseArmor();
+        assertEquals(hunter.getArmor(),4);
     }
 }
