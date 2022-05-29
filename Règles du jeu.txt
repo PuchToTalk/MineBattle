@@ -1,0 +1,43 @@
+Règles du jeu :
+
+Entrer le nombre de héros
+> Mage ?
+> Hunter ?
+> Warrior ?
+> Healer ?
+
+Les héros du joueur joue tour par tour (même principe que Pokémon)
+et attaquent aléatoirement les ennemis.
+
+Lorsque les ennemis sont vaincus, les héros peuvent choisir leur récompenses (parmi les 6 choix)
+Et à l'issue de ce dernier, le user peut choisir de continuer le jeu avec la même session
+Ou d'arrêter de jouer tout simplement.
+
+Si les héros sont vaincus, alors on nous propose de relancer une nouvelle session
+Ou alors d'arrêter de jouer.
+
+
+---------
+Camp des Héros : 
+
+Mage : hp = 10, armure = 3, degat = 3, Mana = 10, cout Mana = 1
+Hunter : hp = 10, armure = 3, degat = 3, fleches = 10
+Warrior : hp = 10, armure = 3, degat = 3
+Healer : hp = 10, armure = 3, degat = 3  Mana = 10, cout Mana = 1
+
+Camp des Ennemis :
+
+EnderDragon (Boss) : hp = 15, degat = 2
+Zombie (Basic Enemy) : hp = 10, degat = 1
+
+---------
+
+Cahier des charges :
+
+• Si l’on prend plus de dégâts que l’on a de PV, on meurt ;
+• si aucun joueur n’est en vie, on a perdu ;
+• si l’on n’a pas assez de mana, on ne peut pas lancer le sort ;
+• on inflige bien les dégâts dans la bonne fourchette de dégâts ;
+• la quantité de flèches diminue quand on tire ;
+• la quantité de mana diminue après avoir lancé un sort ;
+• l’attribution de récompense fonctionne bien après une victoire.
