@@ -54,6 +54,7 @@ public VBox heroContainer; //Attribut contenant données du Hero (fenêtre gauch
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         setGame();
+        refreshNode();
         addGameStartButtons();
     }
 
@@ -184,6 +185,7 @@ public VBox heroContainer; //Attribut contenant données du Hero (fenêtre gauch
         vb.getChildren().add(getHorizontalBox("Nom   ", e.getName()));
         vb.getChildren().add(getHorizontalBox("Vie       ", "" + e.getLifePoints()));
         vb.getChildren().add(getHorizontalBox("Degat      ", "" + e.getDamage()));
+        vb.setEffect(new DropShadow(10, Color.WHITE));
         vb.setEffect(new DropShadow(10, Color.WHITE));
         return vb;
     }
@@ -366,6 +368,9 @@ public VBox heroContainer; //Attribut contenant données du Hero (fenêtre gauch
     private Button getButton(String name, String path) {
         Button btn = new Button(name);
         btn.setPrefSize(200, 200);
+        btn.setBackground(new Background(new BackgroundImage(new Image(path), BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, new BackgroundSize(200, 200, false, false, true, true))));
+        btn.setCursor(Cursor.HAND);
+        btn.setEffect(new DropShadow(10, Color.BLACK));
 
         return btn;
     }
@@ -406,10 +411,10 @@ public VBox heroContainer; //Attribut contenant données du Hero (fenêtre gauch
 
     private void addGameStartButtons() {
 
-        Button btn = getButton("Attaque", "com.isep/ControllerViews/images/sword.jpg");
-        Button btn1 = getButton("Defense", "com.isep/ControllerViews/images/shield.jpg");
-        Button btn2 = getButton("Utilise food", "com.isep/ControllerViews/images/gapple.jpg");
-        Button btn3 = getButton("Utilise potion", "com.isep/ControllerViews/images/potion.jpg");
+        Button btn = getButton("Attaque", "com/isep/ControllerViews/images/sword.jpg");
+        Button btn1 = getButton("Defense", "com/isep/ControllerViews/images/shield.jpg");
+        Button btn2 = getButton("Utilise food", "com/isep/ControllerViews/images/gapple.jpg");
+        Button btn3 = getButton("Utilise potion", "com/isep/ControllerViews/images/potion.jpg");
 
         TilePane tp = new TilePane();
         tp.setAlignment(Pos.CENTER);
@@ -461,6 +466,10 @@ public VBox heroContainer; //Attribut contenant données du Hero (fenêtre gauch
             heroNumber = 0;
             return;
         }
+
+        heroNumber++;
+        refreshNode();
+
     }
 
 
@@ -470,7 +479,7 @@ public VBox heroContainer; //Attribut contenant données du Hero (fenêtre gauch
          */
 
         private void heroesChoice() {
-            System.out.println("Again");
+            System.out.println("Encore");
 
             Button btn1 = new Button("Augmenter Armure");
             btn1.setPrefSize(400, 50);
