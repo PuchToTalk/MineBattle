@@ -1,6 +1,5 @@
-<!-- changement v.w3 -->
-
 <?xml version="1.0" encoding="UTF-8"?>
+<!-- changement v.w7 -->
 
 <!-- On importe les librairies de JavaFX  -->
 <?import javafx.scene.control.ScrollPane?>
@@ -57,5 +56,37 @@
 
     </right>
 
+    <center>
+
+        <!-- BOX affichage TITRE du Jeu + ACTIONS & RECOMPENSES -->
+        <BorderPane fx:id="screenContainer" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+
+            <!-- SOUS BOX affichage centré du nom du jeu : "MINI RPG Lite" -->
+            <top>
+                <Pane prefHeight="86.0" prefWidth="499.0" style="-fx-background-color: #3C040B;" BorderPane.alignment="CENTER">
+                    <children>
+                        <Text fill="WHITE" layoutX="120.0" layoutY="55.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Mini RPG Lite">
+                            <font>
+                                <Font name="Cooper Black" size="37.0" />
+                            </font>
+                        </Text>
+                        <Text fill="WHITE" layoutX="122.0" layoutY="54.0" strokeType="OUTSIDE" strokeWidth="0.0" text="">
+                            <font>
+                                <Font size="26.0" />
+                            </font>
+                        </Text>
+                        <Text fill="WHITE" layoutX="183.0" layoutY="53.0" strokeType="OUTSIDE" strokeWidth="0.0" text="" />
+                        <Text fx:id="messageText" fill="green" layoutX="24" layoutY="80"/>
+                    </children>
+                </Pane>
+            </top>
+            <!-- FIN du titre -->
+
+            <!-- SOUS BOX en dessous du précédent pour commandes ACTIONS + RECOMPENSES (cf GameController) -->
+
+        </BorderPane>
+        <!-- FIN de la bordure de la fenêtre -->
+
+    </center>
 
 </BorderPane>
