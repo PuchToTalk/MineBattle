@@ -186,6 +186,7 @@ public VBox heroContainer; //Attribut contenant données du Hero (fenêtre gauch
         vb.getChildren().add(getHorizontalBox("Vie       ", "" + e.getLifePoints()));
         vb.getChildren().add(getHorizontalBox("Degat      ", "" + e.getDamage()));
         vb.setEffect(new DropShadow(10, Color.WHITE));
+        vb.setEffect(new DropShadow(10, Color.WHITE));
         return vb;
     }
 
@@ -369,6 +370,7 @@ public VBox heroContainer; //Attribut contenant données du Hero (fenêtre gauch
         btn.setPrefSize(200, 200);
         btn.setBackground(new Background(new BackgroundImage(new Image(path), BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, new BackgroundSize(200, 200, false, false, true, true))));
         btn.setCursor(Cursor.HAND);
+        btn.setEffect(new DropShadow(10, Color.BLACK));
 
         return btn;
     }
