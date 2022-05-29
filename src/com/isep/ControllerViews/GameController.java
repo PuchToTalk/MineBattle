@@ -176,4 +176,100 @@ public VBox heroContainer; //Attribut contenant données du Hero (fenêtre gauch
         btn3.setOnAction(this::actionPerformed);
     }
 
+
+    /**
+     * @auteur(s)  (Paul)
+     * @version (v.w3 - 28/05/2022)
+     * Interface (in progress)
+     *
+     * Boutons dynamiques reliés aux actions du héros (4 boutons fonctionnels)
+     * Affichage de l'Image en arrière-plan sur ces 4 boutons d'action (cf ControllerViews.images)
+     * Box affichage Liste ennemis & héros + couleur en fct de leur statut
+     *
+     *
+     * **/
+
+
+    /**
+     * Le Label des barres latéraux gauche / droite pour exactement indiquer le camps ""Heroes / Enemies""
+     */
+    private void initializeLabel() {
+
+        label = new Label("Ennemis");
+        label.setStyle("-fx-font-size: 20;" +
+                "-fx-text-fill: white;");
+        enemiesContainer.getChildren().add(label);
+    }
+
+    /**
+     * Insère : String textuelles : du type Life / ManaPoints / etc..
+     * Insère : Informations stats du héro
+     * En sortie : Affiche une case (ou ligne horizontale) du type  " LifePoints : 10 "
+     */
+
+    private HBox getHorizontalBox(String txt, String inf) {
+        HBox hb = new HBox();
+        hb.setPadding(new Insets(5));
+        hb.getChildren().addAll(new Text(txt), new Text(inf));
+        return hb;
+    }
+
+
+
+    /**
+     * Prend en paramètre e (désignant une instance de Enemy)
+     * Retournant en sortie une case "VBox" grâce au lib JavaFX (avec les infos stats de l'ennemi choisi)
+     */
+
+
+
+    private VBox getEnemyInformationPane(Enemy e) {
+        VBox vb = new VBox();
+        vb.setPrefWidth(139);
+        vb.setMaxWidth(139);
+        vb.setStyle("-fx-background-color: #ffff;");
+        vb.getChildren().add(getHorizontalBox("Nom   ", e.getName()));
+        vb.getChildren().add(getHorizontalBox("Vie       ", "" + e.getLifePoints()));
+        vb.getChildren().add(getHorizontalBox("Degat      ", "" + e.getDamage()));
+        vb.setEffect(new DropShadow(10, Color.WHITE));
+        return vb;
+    }
+
+
+    /**
+     * Ajoute ENEMIES sur côté CONTAINER fenêtre à droite, un à un
+     * Applique une couleur rouge si ENEMY = DEAD  i.e  EnemyLifepoint < 1
+     * Statut de l'ennemi standard en rose
+     */
+
+
+    private void setEnemiesContainer() {
+        for (Enemy enemy : game.getEnemyList()) {
+            if (game.getEnemyByTurn() == enemy) { // met en évidence l'ennemi qui est ciblé
+                VBox vb = getEnemyInformationPane(enemy);
+                vb.setStyle("-fx-background-color: #ee00ff;");
+                enemiesContainer.getChildren().add(vb);
+            } else if (enemy.getLifePoints() <= 0) { // cas où ennemi est mort => l'applique une case fond rouge
+                VBox vb = getEnemyInformationPane(enemy);
+                vb.setStyle("-fx-background-color: #ff0000;");
+                enemiesContainer.getChildren().add(vb);
+            } else {
+                VBox vb = getEnemyInformationPane(enemy);
+                enemiesContainer.getChildren().add(vb);
+            }
+        }
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
 }
