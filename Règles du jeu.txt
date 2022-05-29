@@ -41,3 +41,12 @@ Cahier des charges :
 • la quantité de flèches diminue quand on tire ;
 • la quantité de mana diminue après avoir lancé un sort ;
 • l’attribution de récompense fonctionne bien après une victoire.
+
+
+Bibliographie :
+
+Interface graphique : https://www.youtube.com/watch?v=G5yr4sekAI0&list=PLKeu8PQ3H2v_LVIDMP5S6YzNq8Ojr36ah&index=3&t=202s&ab_channel=RyiSnow
+GameLogic : https://www.youtube.com/watch?v=jvqfgWBbUzA&list=PLKeu8PQ3H2v_LVIDMP5S6YzNq8Ojr36ah&index=2&t=24s&ab_channel=blazeykatdev.
+Méthodes Builders : Moodle ISEP + https://www.youtube.com/watch?v=JIP-S0GLtgU&list=PLKeu8PQ3H2v_LVIDMP5S6YzNq8Ojr36ah&index=1&t=271s&ab_channel=L%27Odyss%C3%A9ed%27unbit
+Scene Builders : https://www.youtube.com/watch?v=FylHot91Lz8&ab_channel=DylanCodes 
++ Ppaux fcts : (Containers, Labels, VBox, ...) : https://www.youtube.com/watch?v=cfGTJVVcWvE&list=PLpFneQZCNR2ktqseX11XRBc5Kyzdg2fbo&ab_channel=SoftwareDevelopmentTutorials
