@@ -309,8 +309,8 @@ public VBox heroContainer; //Attribut contenant données du Hero (fenêtre gauch
         if (game.win()) {
             System.out.println("Encore");
             alertDialogue("VICTOIRE!!!");
-            // manque la suite avec choix des récompenses
-
+            // Lance la suite avec choix des récompenses
+            heroesChoice();
             setEnemiesContainer();
         } else if (game.lose()) {
             alertDialogue("Game Over, vous avez perdu..");
@@ -356,9 +356,6 @@ public VBox heroContainer; //Attribut contenant données du Hero (fenêtre gauch
             System.exit(0);
         }
     }
-
-
-
 
 
     //            SET UP DES BOUTONS DYNAMIQUES / ACTIONS DU USER               //
@@ -431,6 +428,86 @@ public VBox heroContainer; //Attribut contenant données du Hero (fenêtre gauch
         btn2.setOnAction(this::actionPerformed);
         btn3.setOnAction(this::actionPerformed);
     }
+
+
+    //            CHOIX RECOMPENSES : Boutons                //
+
+
+    /**
+     * Exécute le choix précédent de la récompense
+     * Utilise objet Action Event (eventHandlers) pour reconnaître le contenu du bouton
+     */
+
+    private void choiceAction(ActionEvent e) {
+        refreshNode();
+        Button btn = (Button) e.getSource();
+        if (btn.getText().contains("Armure")) {
+            setMessageText(game.increaseArmor());
+        } else if (btn.getText().contains("Degat")) {
+            setMessageText(game.increaseWeaponDamage());
+        } else if (btn.getText().contains("Coût Mana")) {
+            setMessageText(game.decreaseManaCost());
+        } else if (btn.getText().contains("Fleches")) {
+            setMessageText(game.increaseArrows());
+        } else if (btn.getText().contains("Efficacite")) {
+            setMessageText(game.increaseFoodAndPotionEffectiveness());
+        } else if (btn.getText().contains("Qtité")) {
+            setMessageText(game.increasePotionAndFoodNumber());
+        }
+
+
+        // Rafraichis statut de l'équipe
+        if (heroNumber >= game.getHeroList().size()) {
+            System.out.println("");
+            doContinue();
+            setEnemiesContainer();
+            addGameStartButtons();
+            refreshNode();
+            heroNumber = 0;
+            return;
+        }
+    }
+
+
+        /**
+         * Fonction apparaît seulement si le héro WIN() le fight :
+         * Utilisation de Action Listener (EventListeners) pour lire ce qui a été selectionné depuis boutons
+         */
+
+        private void heroesChoice() {
+            System.out.println("Again");
+
+            Button btn1 = new Button("Augmenter Armure");
+            btn1.setPrefSize(400, 50);
+
+            Button btn2 = new Button("Augmenter Degat");
+            btn2.setPrefSize(400, 50);
+
+            Button btn3 = new Button("Augmenter Efficacite Food & Potion");
+            btn3.setPrefSize(400, 50);
+
+            Button btn4 = new Button("Augmenter Qtite Food & Potion");
+            btn4.setPrefSize(400, 50);
+
+            Button btn5 = new Button("Augmenter Fleches");
+            btn5.setPrefSize(400, 50);
+
+            Button btn6 = new Button("Diminuer Coût Mana");
+            btn6.setPrefSize(400, 50);
+
+            FlowPane fp = new FlowPane();
+            fp.setAlignment(Pos.CENTER);
+            fp.getChildren().addAll(btn1, btn2, btn3, btn4, btn5, btn6);
+
+            btn1.setOnAction(this::choiceAction);
+            btn2.setOnAction(this::choiceAction);
+            btn3.setOnAction(this::choiceAction);
+            btn4.setOnAction(this::choiceAction);
+            btn5.setOnAction(this::choiceAction);
+            btn6.setOnAction(this::choiceAction);
+
+            screenContainer.setCenter(fp);
+        }
 
 
 
