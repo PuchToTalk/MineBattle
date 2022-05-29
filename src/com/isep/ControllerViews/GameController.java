@@ -39,6 +39,8 @@ public class GameController implements Initializable {
  * MsgText : pour afficher en textuel le message de l'action réalisé
  * **/
 
+//            INITIALISATION                 //
+
 public VBox heroContainer; //Attribut contenant données du Hero (fenêtre gauche)
     public VBox enemiesContainer; //Attribut contenant données du Enemy (fenêtre droite)
     public BorderPane screenContainer;  //Bordure = la Border Box qui contient élémts du Sidebar
@@ -55,12 +57,12 @@ public VBox heroContainer; //Attribut contenant données du Hero (fenêtre gauch
         addGameStartButtons();
     }
 
-
+    //            GAME SCREEN / TITLE / BORDER              //
     /**
      *
-     *            Grâce à "TextInputDialog" : possibilité d'afficher popup avec comme paramètres :
-     *            Txt @contenu : le texte qu'on mettra (du type "combien de joueurs ? ") => utiliser le même principe pour ricochet
-     *                  @titre : Mini rpg lite
+     *   Grâce à "TextInputDialog" : possibilité d'afficher popup avec comme paramètres :
+     *   Txt @contenu : le texte qu'on mettra (du type "combien de joueurs ? ") => utiliser le même principe pour ricochet
+     *   @titre : Mini rpg lite
      */
 
     private String ask(String txt) {
@@ -72,6 +74,7 @@ public VBox heroContainer; //Attribut contenant données du Hero (fenêtre gauch
         return tid.getResult();
     }
 
+    //            INITIALISATION DEBUT JEU (NBRE HEROS)                //
 
     /**
      * Faisant appel à ask(txt)
@@ -89,19 +92,6 @@ public VBox heroContainer; //Attribut contenant données du Hero (fenêtre gauch
     }
 
 
-    /**
-     * Nom à afficher sur bouton
-     * path, source de l'image recherché depuis mon répertoire pour l'image du background
-     *
-     * Sortie : Bouton "btn"
-     */
-
-    private Button getButton(String name, String path) {
-        Button btn = new Button(name);
-        btn.setPrefSize(200, 200);
-
-        return btn;
-    }
 
 
     /**
@@ -115,7 +105,7 @@ public VBox heroContainer; //Attribut contenant données du Hero (fenêtre gauch
      * Boutons (aligné)
      * **/
 
-
+    //            AFFICHAGE SUR CONSOLE ACTION                //
 
 
     /**
@@ -129,56 +119,10 @@ public VBox heroContainer; //Attribut contenant données du Hero (fenêtre gauch
 }
 
 
-    /**
-     * Applique la fonction employé correspondant au bouton appuyé
-     * Utilisation d'un objet de Action Event (eventHandlers) pour connaître quelle case/ bouton a été sélectionné par l'user
-     */
-
-    private void actionPerformed(ActionEvent e) {
-        // à compléter
-
-        if (((Button) e.getSource()).getText().equalsIgnoreCase("Attaque")) {
-            setMessageText(game.attack());
-        } else if (((Button) e.getSource()).getText().equalsIgnoreCase("Defense")) {
-            setMessageText(game.defend());
-        } else if (((Button) e.getSource()).getText().equalsIgnoreCase("Utilise food")) {
-            setMessageText(game.consumeFood());
-        } else if (((Button) e.getSource()).getText().equalsIgnoreCase("Utilise potion")) {
-            setMessageText(game.consumePotion());
-        }
-        try {
-        } catch (Exception ignored) {
-            // erreur à prédire : à compléter
-        }
-    }
 
 
 
-    /**
-     * Place les fcts attack(), defend(), useConsumable() (enfin food ou lembas) dans un button spécifique;
-     * Initialise + Attribue action listener
-     * l'ajoute puis afffiche sur l'écran du box milieu
-     */
 
-    private void addGameStartButtons() {
-
-        Button btn = getButton("Attaque", "game/ControllerViews/images/sword.jpg");
-        Button btn1 = getButton("Defense", "game/ControllerViews/images/shield.jpg");
-        Button btn2 = getButton("Utilise food", "game/ControllerViews/images/gapple.jpg");
-        Button btn3 = getButton("Utilise potion", "game/ControllerViews/images/potion.jpg");
-
-        TilePane tp = new TilePane();
-        tp.setAlignment(Pos.CENTER);
-        tp.getChildren().addAll(btn, btn1, btn2, btn3);
-        screenContainer.setCenter(tp);
-        tp.setHgap(10);
-        tp.setVgap(10);
-
-        btn.setOnAction(this::actionPerformed);
-        btn1.setOnAction(this::actionPerformed);
-        btn2.setOnAction(this::actionPerformed);
-        btn3.setOnAction(this::actionPerformed);
-    }
 
 
     /**
@@ -192,6 +136,8 @@ public VBox heroContainer; //Attribut contenant données du Hero (fenêtre gauch
      *
      *
      * **/
+
+    //            INITIALISATION, AFFICHAGE PARAMTRES                //
 
 
     /**
@@ -220,6 +166,11 @@ public VBox heroContainer; //Attribut contenant données du Hero (fenêtre gauch
         hb.getChildren().addAll(new Text(txt), new Text(inf));
         return hb;
     }
+
+
+
+
+    //            RECUPERATION INFOS STATS SUR USERS (Hero / Enemy)                 //
 
 
 
@@ -314,6 +265,112 @@ public VBox heroContainer; //Attribut contenant données du Hero (fenêtre gauch
             }
         }
     }
+
+
+    //            GAME RULE AFFICHAGE SCREEN                 //
+
+
+    /**
+     * Intervient quand cas du WIN / LOOSE
+     * Affiche un pop-up / alerte
+     */
+
+    private void alertDialogue(String txt) {
+        System.out.println("Interaction");
+        Alert alert = new Alert(Alert.AlertType.INFORMATION, txt);
+        alert.showAndWait();
+    }
+
+    /**
+     * MAJ des stats & du "containers"
+     * Fonction fondamentale car on fait appel à chaque tour (maj des infos à chaque tour)
+     */
+
+    private void refreshNode() {
+        heroContainer.getChildren().clear();
+        enemiesContainer.getChildren().clear();
+        try {
+            initializeLabel();
+            setHeroContainer();
+            setEnemiesContainer();
+        } catch (Exception ignored) {
+
+        }
+    }
+
+
+    /**
+     * Si "WIN" : on affiche popup de victoire / Sinon, "LOOSE" : affiche popup de game over
+     * Si win(), on active heroesChoice() <-> choix des récompenses </->
+     * Sinon demande, de recommencer ou non : doContinue()
+     */
+
+    private void winLoose() {
+        if (game.win()) {
+            System.out.println("Encore");
+            alertDialogue("VICTOIRE!!!");
+            // manque la suite avec choix des récompenses
+
+            setEnemiesContainer();
+        } else if (game.lose()) {
+            alertDialogue("Game Over, vous avez perdu..");
+            // manque une possibilité de relancer le jeu
+
+            initialize(null, null);
+        }
+    }
+
+
+
+
+
+    //            SET UP DES BOUTONS DYNAMIQUES / ACTIONS DU USER               //
+
+
+    /**
+     * Nom à afficher sur bouton
+     * path, source de l'image recherché depuis mon répertoire pour l'image du background
+     *
+     * Sortie : Bouton dynamique "btn"
+     */
+
+    private Button getButton(String name, String path) {
+        Button btn = new Button(name);
+        btn.setPrefSize(200, 200);
+
+        return btn;
+    }
+
+
+
+    /**
+     * Applique la fonction employé correspondant au bouton appuyé
+     * Utilisation d'un objet de Action Event (eventHandlers) pour connaître quelle case/ bouton a été sélectionné par l'user
+     */
+
+    private void actionPerformed(ActionEvent e) {
+        refreshNode();
+        winLoose();
+        if (((Button) e.getSource()).getText().equalsIgnoreCase("Attaque")) {
+            setMessageText(game.attack());
+        } else if (((Button) e.getSource()).getText().equalsIgnoreCase("Defense")) {
+            setMessageText(game.defend());
+        } else if (((Button) e.getSource()).getText().equalsIgnoreCase("Utilise food")) {
+            setMessageText(game.consumeFood());
+        } else if (((Button) e.getSource()).getText().equalsIgnoreCase("Utilise potion")) {
+            setMessageText(game.consumePotion());
+        }
+        try {
+            winLoose();
+            refreshNode();
+        } catch (Exception ignored) {
+        }
+    }
+
+
+
+
+}
 
 
 
