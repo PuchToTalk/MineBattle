@@ -137,3 +137,25 @@ Début Interface
 > boutons
 > modélisation interface grâce Scene Builders (fichier xml en cours)
 > voir croquis de mes attentes
+
+
+27/05/22
+Correction des petits détails
+Tests Unitaires correction
+> tests corrects pour les 4 classes
+
+28/05/22
+Continuation Interface
+> SceneBuilders : répartition des éléments et validation visuel du croquis
+> Savoir quoi utiliser : Vbox, Containers, boutons, popup
+
+
+29/05/22
+Interface rush final
+> Ajout Cases pour les deux camps HERO / ENEMY
+> Ajout couleurs sur les cases pour montrer statut ALIVE / DEAD 
+> Boutons dynamiques (actions du héros)
+> Suite de l'histoire (choix des récompenses : via boutons dynamiques)
+> DoContinue() : relancer la session
+> Ajout image en arrière plan des boutons
+> Ajout ombre sur cases
