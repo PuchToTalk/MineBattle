@@ -314,9 +314,46 @@ public VBox heroContainer; //Attribut contenant données du Hero (fenêtre gauch
             setEnemiesContainer();
         } else if (game.lose()) {
             alertDialogue("Game Over, vous avez perdu..");
-            // manque une possibilité de relancer le jeu
+            // possibilité de relancer le jeu
+            doContinue();
+
 
             initialize(null, null);
+        }
+    }
+
+
+
+    /**
+     * Fonction demande par popup si on souhaite continuer/recommencer le combat ou non
+     * Oui : ReLoad l'ens des étapes : game.NewGame()
+     * Non : Sort du jeu
+     */
+
+    private void doContinue() {
+        System.out.println("Continuer");
+
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Confirmation");
+        alert.setHeaderText(null);
+        alert.setContentText("Continuer ?");
+
+        // si oui continuer
+        ButtonType buttonTypeOne = new ButtonType("Oui", ButtonBar.ButtonData.OK_DONE);
+        // sinon, arrêter le jeu "exit"
+        ButtonType buttonTypeTwo = new ButtonType("Non", ButtonBar.ButtonData.NO);
+
+
+        alert.getButtonTypes().setAll(buttonTypeOne, buttonTypeTwo);
+
+        // les cas :
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.get() == buttonTypeOne) {
+            alertDialogue(game.newCombat());
+        } else if (result.get() == buttonTypeTwo) {
+            System.exit(0);
+        } else {
+            System.exit(0);
         }
     }
 
@@ -366,6 +403,35 @@ public VBox heroContainer; //Attribut contenant données du Hero (fenêtre gauch
         } catch (Exception ignored) {
         }
     }
+
+
+
+    /**
+     * Place les fcts attack(), defend(), useConsumable() (enfin food ou lembas) dans un button spécifique;
+     * Initialise + Attribue action listener
+     * l'ajoute puis afffiche sur l'écran du box milieu
+     */
+
+    private void addGameStartButtons() {
+
+        Button btn = getButton("Attaque", "com.isep/ControllerViews/images/sword.jpg");
+        Button btn1 = getButton("Defense", "com.isep/ControllerViews/images/shield.jpg");
+        Button btn2 = getButton("Utilise food", "com.isep/ControllerViews/images/gapple.jpg");
+        Button btn3 = getButton("Utilise potion", "com.isep/ControllerViews/images/potion.jpg");
+
+        TilePane tp = new TilePane();
+        tp.setAlignment(Pos.CENTER);
+        tp.getChildren().addAll(btn, btn1, btn2, btn3);
+        screenContainer.setCenter(tp);
+        tp.setHgap(10);
+        tp.setVgap(10);
+
+        btn.setOnAction(this::actionPerformed);
+        btn1.setOnAction(this::actionPerformed);
+        btn2.setOnAction(this::actionPerformed);
+        btn3.setOnAction(this::actionPerformed);
+    }
+
 
 
 
