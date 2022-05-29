@@ -7,7 +7,10 @@ package com.isep.ControllerViews;
  * **/
 
 
-/** Import l'ensemble des classes contenues dans le cadre du fctment du jeu **/
+/** Import l'ensemble des classes contenus dans le cadre du fctment du jeu
+ * Import surtout de la GameLogic
+ * Et les classes des héros/ ennemis
+ * **/
 import com.isep.rpg.*;
 
 /** BIBLIOTHEEEEQUEEEE DE L'INTERFAAACEEE JAVAAAFIKSSSSSSS (à utiliser ou bib utile) **/
@@ -120,6 +123,7 @@ public VBox heroContainer; //Attribut contenant données du Hero (fenêtre gauch
      */
 
     private void setMessageText(String txt) {
+
         messageText.setText(txt);
     }
 }
@@ -194,7 +198,10 @@ public VBox heroContainer; //Attribut contenant données du Hero (fenêtre gauch
      * Le Label des barres latéraux gauche / droite pour exactement indiquer le camps ""Heroes / Enemies""
      */
     private void initializeLabel() {
-
+        Label label = new Label("Heros");
+        label.setStyle("-fx-font-size: 20;" +
+                "-fx-text-fill: white;");
+        heroContainer.getChildren().add(label);
         label = new Label("Ennemis");
         label.setStyle("-fx-font-size: 20;" +
                 "-fx-text-fill: white;");
@@ -203,8 +210,8 @@ public VBox heroContainer; //Attribut contenant données du Hero (fenêtre gauch
 
     /**
      * Insère : String textuelles : du type Life / ManaPoints / etc..
-     * Insère : Informations stats du héro
-     * En sortie : Affiche une case (ou ligne horizontale) du type  " LifePoints : 10 "
+     * Insère :  Informations stats du héro / enemy
+     * En sortie : Affiche Paramètres de la case (ou ligne horizontale) du type  " LifePoints : 10 "
      */
 
     private HBox getHorizontalBox(String txt, String inf) {
@@ -235,6 +242,32 @@ public VBox heroContainer; //Attribut contenant données du Hero (fenêtre gauch
         return vb;
     }
 
+    /**
+     * Même idée que précédemment mais prend en entrée une instance de Hero
+     * Retournant les mêmes catégories + d'autres en infos en suppléments (comme Armure / Qtité Food  / potion /flèches )
+     */
+    private VBox getHeroInformationPane(Hero hero) {
+        VBox vb = new VBox();
+        vb.setPrefWidth(139);
+        vb.setMaxWidth(139);
+        vb.setStyle("-fx-background-color: #ffff;");
+        vb.getChildren().add(getHorizontalBox("Nom:   ", hero.getName()));
+        vb.getChildren().add(getHorizontalBox("Vie:       ", "" + hero.getLifePoints()));
+        vb.getChildren().add(getHorizontalBox("Armure:      ", "" + hero.getArmor()));
+        vb.getChildren().add(getHorizontalBox("Degat:      ", "" + hero.getWeaponDamage()));
+        vb.getChildren().add(getHorizontalBox("Qtité Food:   ", "" + hero.getLembas().size()));
+        vb.setEffect(new DropShadow(10, Color.WHITE));
+        if (hero instanceof Hunter) {
+            vb.getChildren().add(getHorizontalBox("Qtité Fleches: ", "" + hero.getArrows()));
+        }
+        if (hero instanceof Mage || hero instanceof Healer) {
+            vb.getChildren().add((getHorizontalBox("Qtité Potion:        ", "" + hero.getPotions().size())));
+            vb.getChildren().add((getHorizontalBox("Point Mana:        ", "" + hero.getManaPoints())));
+            vb.getChildren().add(getHorizontalBox("Coût Mana:     ", "" + hero.getManaCost()));
+        }
+        return vb;
+    }
+
 
     /**
      * Ajoute ENEMIES sur côté CONTAINER fenêtre à droite, un à un
@@ -258,6 +291,30 @@ public VBox heroContainer; //Attribut contenant données du Hero (fenêtre gauch
                 enemiesContainer.getChildren().add(vb);
             }
         }
+    }
+
+
+    /**
+     * Même disposition que pour la catégorie Enemy : on les place de mm style que pour case enemy
+     * + Insère couleur propre au statut VIE/MORT des persos (si en vi : ajout de case + couleur vive / sinon si vie < 0 : modéliser case + couleur rouge/ sinon applique l'ajout d infos)
+     */
+
+    private void setHeroContainer() {
+        for (Hero hero : game.getHeroList()) {
+            if (game.getHeroList().get(game.getPlayerTurn()) == hero) {
+                VBox vb = getHeroInformationPane(hero);
+                vb.setStyle("-fx-background-color: #ff0087;");
+                heroContainer.getChildren().add(vb);
+            } else if (hero.getLifePoints() <= 0) {
+                VBox vb = getHeroInformationPane(hero);
+                vb.setStyle("-fx-background-color: #ff0101;");
+                heroContainer.getChildren().add(vb);
+            } else {
+                heroContainer.getChildren().add(getHeroInformationPane(hero));
+            }
+        }
+
+
     }
 
 
