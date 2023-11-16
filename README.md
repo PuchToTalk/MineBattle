@@ -1,7 +1,6 @@
-# Sauvegardes & commits sur la branche DEVELOP
-**IMPORTANT : Voir branche "develop" pour les détails sur les commits et avancée en temps réel du projet ^^**
+# MineBattle - RPG Simulator (inspired by Minecraft x Pokemon Battle System)
 
-# Progress
+## Progress
 DRAFT : ![Capture d’écran 2023-11-16 à 11 22 07](https://github.com/PuchToTalk/TP4_Paul_CHU/assets/90144938/0f7e37cf-124d-4508-a7c1-9872c657addd)
 
 IN PROGRESS : ![Capture d’écran 2023-11-16 à 11 22 21](https://github.com/PuchToTalk/TP4_Paul_CHU/assets/90144938/ff5da070-6cba-4c9b-88d9-203fd757ef54)
@@ -9,7 +8,7 @@ IN PROGRESS : ![Capture d’écran 2023-11-16 à 11 22 21](https://github.com/
 FINAL RESULT : ![Capture d’écran 2023-11-16 à 11 21 54](https://github.com/PuchToTalk/TP4_Paul_CHU/assets/90144938/8885002f-bf82-44bf-a754-0ec7409381b9)
 
 
-# Versions récentes sur branche master
+## Updates
 > d1 : brouillons*
 
 > d2 : recommence à zéro
