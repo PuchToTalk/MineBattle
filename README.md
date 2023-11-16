@@ -1,11 +1,14 @@
 # MineBattle - RPG Simulator (inspired by Minecraft x Pokemon Battle System)
 
 ## Progress
-DRAFT : ![Capture d’écran 2023-11-16 à 11 22 07](https://github.com/PuchToTalk/TP4_Paul_CHU/assets/90144938/0f7e37cf-124d-4508-a7c1-9872c657addd)
+DRAFT : ![Capture d’écran 2023-11-16 à 11 22 07](https://github.com/PuchToTalk/MineBattle/assets/90144938/092b16ee-e4f3-4dc7-a91a-f99b0cea9914)
 
-IN PROGRESS : ![Capture d’écran 2023-11-16 à 11 22 21](https://github.com/PuchToTalk/TP4_Paul_CHU/assets/90144938/ff5da070-6cba-4c9b-88d9-203fd757ef54)
 
-FINAL RESULT : ![Capture d’écran 2023-11-16 à 11 21 54](https://github.com/PuchToTalk/TP4_Paul_CHU/assets/90144938/8885002f-bf82-44bf-a754-0ec7409381b9)
+IN PROGRESS : ![Capture d’écran 2023-11-16 à 11 22 21](https://github.com/PuchToTalk/MineBattle/assets/90144938/8fdb9539-5b30-421c-9664-94e9f7c23a45)
+
+
+FINAL RESULT : ![Capture d’écran 2023-11-16 à 11 21 54](https://github.com/PuchToTalk/MineBattle/assets/90144938/f7cd4b58-f0dd-47d0-bf21-a77e8d1fce84)
+
 
 
 ## Updates
